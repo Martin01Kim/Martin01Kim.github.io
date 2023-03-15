@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="单片机RAM：随机存储器，一般被称作运行内存，读取速度快，下电后数据不保留 ROM：只读存储器，与RAM不同，不同于软盘与光盘，不易损坏，且存储容量较大，断电不丢失数据 AT89S51 8位微处理器：包括运算器与控制器，有位处理器 数据存储器（128B RAM）：最多可扩至64KB，片内RAM为高速RAM 程序存储器（4KB FLASH ROM）:最多可扩展至64KB 4个8位IO口 全双工异步串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单片机笔记">
+<meta property="og:url" content="http://example.com/2023/02/10/%E5%8D%95%E7%89%87%E6%9C%BA/index.html">
+<meta property="og:site_name" content="小金的学习日志">
+<meta property="og:description" content="单片机RAM：随机存储器，一般被称作运行内存，读取速度快，下电后数据不保留 ROM：只读存储器，与RAM不同，不同于软盘与光盘，不易损坏，且存储容量较大，断电不丢失数据 AT89S51 8位微处理器：包括运算器与控制器，有位处理器 数据存储器（128B RAM）：最多可扩至64KB，片内RAM为高速RAM 程序存储器（4KB FLASH ROM）:最多可扩展至64KB 4个8位IO口 全双工异步串">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315103444131.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315111238235.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315112839522.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315115705939.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315115922552.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315122332406.png">
+<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315104510770.png">
+<meta property="article:published_time" content="2023-02-10T14:07:08.000Z">
+<meta property="article:modified_time" content="2023-03-15T16:58:09.634Z">
+<meta property="article:author" content="金东铉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315103444131.png">
+
+<link rel="canonical" href="http://example.com/2023/02/10/%E5%8D%95%E7%89%87%E6%9C%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>单片机笔记 | 小金的学习日志</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="小金的学习日志" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Martin01Kim" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小金的学习日志</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/10/%E5%8D%95%E7%89%87%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金东铉">
+      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小金的学习日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          单片机笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-10 22:07:08" itemprop="dateCreated datePublished" datetime="2023-02-10T22:07:08+08:00">2023-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-16 00:58:09" itemprop="dateModified" datetime="2023-03-16T00:58:09+08:00">2023-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8D%95%E7%89%87%E6%9C%BA%E5%8E%9F%E7%90%86%E5%8F%8A%E5%BA%94%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">单片机原理及应用</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="单片机"><a href="#单片机" class="headerlink" title="单片机"></a>单片机</h1><p>RAM：随机存储器，一般被称作运行内存，读取速度快，下电后数据不保留</p>
+<p>ROM：只读存储器，与RAM不同，不同于软盘与光盘，不易损坏，且存储容量较大，断电不丢失数据</p>
+<h2 id="AT89S51"><a href="#AT89S51" class="headerlink" title="AT89S51"></a>AT89S51</h2><ul>
+<li>8位微处理器：包括运算器与控制器，有位处理器</li>
+<li>数据存储器（128B RAM）：最多可扩至64KB，片内RAM为高速RAM</li>
+<li>程序存储器（4KB FLASH ROM）:最多可扩展至64KB</li>
+<li>4个8位IO口</li>
+<li>全双工异步串口：4种工作方式</li>
+<li>2个16位定时器&#x2F;计数器：有4种工作方式</li>
+<li>1个看门狗定时器：计数器，检测系统是否跑飞或者死循环，对系统发出复位信号，使系统复位</li>
+<li>中断系统：5个中断源，5个中断向量（中断服务程序的入口）,2级中断优先级</li>
+<li>特殊功能寄存器SFR 26个：控制寄存器和状态寄存器，映射在片内RAM区80H~FFH之内</li>
+<li>低功耗的空闲模式和掉电模式</li>
+<li>3个程序加密位</li>
+</ul>
+<p>相比于89C51，89S51最显著的优点是有一个ISP（在线可编程功能）</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315103444131.png" alt="image-20230315103444131"></p>
+<p>40个引脚各个功能：</p>
+<ul>
+<li>电源引脚：Vcc（5V电源），Vss（数字地）</li>
+<li>时钟引脚：XTAL1（输入源，使用片内震荡源时外接石英晶体，电容，使用外部震荡源时，该引脚悬空），XTAL2（片内震荡源反相放大器输出源）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>控制引脚</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RST</td>
+<td>复位信号输入，复位时必须加两个机器周期的高电平，正常时应该为TTL低电平</td>
+</tr>
+<tr>
+<td>EA*</td>
+<td>EA&#x3D;1时，决定程序访问的ROM，PC值小于0FFFH时访问片内的FLASH，大于0FFFH时访问片外FLASH；EA&#x3D;0时，只访问片外FLASH，地址为0000H~FFFFH，一般默认接高电平</td>
+</tr>
+<tr>
+<td>ALE</td>
+<td>访问外部存储器提供的低八位地址锁存信号，将低8位地址锁存在片外地址锁存器中，运行时一直有时钟信号输出，位晶振频率的六分之一，可通过特殊功能寄存器禁止时钟信号输出</td>
+</tr>
+<tr>
+<td>PROG*</td>
+<td>对片内FLASH编程脉冲输入</td>
+</tr>
+<tr>
+<td>PSEN*</td>
+<td>片外存储器读选通信号，低有效</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>IO口</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P0</td>
+<td><strong>漏极开路（OD）的双向口</strong>，可作为系统总线的低8位地址线与数据总线的分时复用口，也可作通用IO口，需要加上拉电阻，此时变为准双向口（没有高阻态），可负载8个低功耗型的TTL负载</td>
+<td>作为总线口输入输出时一定要先写1</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>准双向口，内部含有上拉电阻，可驱动4个低功耗型TTL负载，其中P1.5&#x2F;P1.6&#x2F;P1.7是用于对FLASH存储器进行编程和校验的SPI总线，分别是MOSI(串行数据输入)，MISO(串行数据输出)，SCK（移位脉冲引脚）</td>
+<td></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>准双向口，内部有上拉电阻，可以作为系统总线的高8位地址总线使用</td>
+<td></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>准双向口，内部有上拉电阻</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>准双向口使用时要先写1</strong></p>
+<span id="more"></span>
+
+<p><strong>CPU</strong></p>
+<ul>
+<li>运算器：对操作数进行算术，逻辑和位操作运算</li>
+</ul>
+<p>组成：算术逻辑运算单元ALU，累加器A，位处理器，程序状态字寄存器PSW，以及两个暂存器</p>
+<p><strong>ALU：可以对8位变量进行逻辑运算，算术运算</strong></p>
+<p><strong>A：使用最频繁的寄存器，可作为ALU的输入数据源之一，也可当作运算结果的存放单元，大多数数据都通过A，数据中转站，为避免瓶颈阻塞，单片机提供了不经过累加器的指令</strong></p>
+<p><strong>PSW：字节地址为DOH</strong></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315111238235.png" alt="image-20230315111238235"></p>
+<ol>
+<li><strong>Cy：进位标志位，当有进位产生时为1，在位处理器时为，是累加器</strong></li>
+<li><strong>Ac：辅助进位标志位，使用BCD码时，当低4位向高4位有进位时为1</strong></li>
+<li><strong>F0：由用户使用的状态标志位，用指令使他置1或清0，控制程序流向</strong></li>
+<li><strong>RS1，RS0：寄存器区选择位，分别用来选择4组不同的寄存器地址，（00H~1FH）</strong></li>
+<li><strong>OV：溢出标志位</strong></li>
+<li><strong>P：奇偶校验位，1表示累加器A中“1”的个数为奇数</strong></li>
+</ol>
+<ul>
+<li>控制器</li>
+</ul>
+<ol>
+<li>PC：程序计数器，是一个独立的16位计数器，用户不可访问，复位时PC位0000H，从程序存储器0000H开始读指令，取一个后自动加1，位宽决定能够访问的程序范围</li>
+</ol>
+<p><strong>存储器：哈佛结构，有各自的访问指令，分为4类</strong></p>
+<ul>
+<li>程序存储器(分为片内和片外两部分)：Flash Rom 最多为4KB，片外可扩至64KB</li>
+</ul>
+<p><strong>片内4KB FLASH，地址为0000H<del>0FFFH，16位地址总线，片外扩至64KB时，地址为0000H</del>FFFFH，有5个固定单元为中断源入口地址，分别为00003H~0023H，每个依次相隔8位，分别为外部中断0，定时器0，外部中断1，定时器1，串行口</strong></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315112839522.png" alt="image-20230315112839522"></p>
+<ul>
+<li>数据存储器（分为片内片外两部分）：片内RAM最多为128B，片外可扩至64KB</li>
+</ul>
+<p><strong>程序存储器可扩展最大RAM由地址线决定，89S51地址线为16根，所以可扩展2的16次幂，即64KB，片内片外的低128B地址是相同的，但由于访问指令不同所以不冲突</strong></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315115705939.png" alt="image-20230315115705939"></p>
+<ul>
+<li>特殊功能寄存器SFR：各功能部件的控制寄存器和状态寄存器</li>
+</ul>
+<p><strong>映射在片内80H~FFH，仅有字节地址末尾为8和0的特殊功能寄存器可以进行位寻址</strong></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315115922552.png" alt="image-20230315115922552"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315122332406.png" alt="image-20230315122332406"></p>
+<p><strong>堆栈指针SP：主要保护断点（保护跳转前程序指针）和现场保护（保护寄存器中的值），复位后默认为07H，使用时需要重新设置堆栈指针地址，一般设在片内RAM最上层</strong></p>
+<p><strong>寄存器B：主要用于乘除法的数据存储，A*B时，高8位放入B寄存器，低8位放入A寄存器，除法时，商放入A寄存器，余数放入B寄存器</strong></p>
+<p><strong>辅助寄存器AUXR：DISALE(ALE的禁止允许位，为0时允许)，DISRT0（控制看门狗是否在溢出情况下对系统进行复位，为0时允许复位），WDIDLE（单片机在空闲模式下看门狗是否计数，为0时允许计数）</strong></p>
+<p><strong>数据指针DPTR0与DPTR1：DPTR0为89C51原有的数据指针，DPTR1为新增加的数据指针，AUXR1寄存器用于选择使用哪个数据指针，为0时使用DPTR0，数据指针也可以作为一个独立的16位寄存器使用，或两个8位的寄存器使用</strong></p>
+<p><strong>辅助寄存器AUXR1：DPS用于选择使用哪个数据指针，地址为A2H</strong></p>
+<p><strong>看门狗计数器WDT：14位计数器和看门狗定时器复位寄存器</strong></p>
+<ul>
+<li>位地址空间：211个可寻址位，128片内RAM，83位SFR区</li>
+</ul>
+<p>128位在RAM中20H~2FH单元中，每个单元为8位，一共128位，每一位可以置1清0，也可以进行8位的读或写</p>
+<p>剩余的位在特殊功能寄存器中，一共有11个寄存器可供位寻址，一共88位，由5位未用</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230315104510770.png" alt="image-20230315104510770"></p>
+<p><strong>串行IO口属于带锁存功能的特殊寄存器，字节地址分别为80H,90H,A0H,B0H</strong></p>
+<h3 id="时钟电路与时序"><a href="#时钟电路与时序" class="headerlink" title="时钟电路与时序"></a>时钟电路与时序</h3><p>时钟电路产生必须的控制信号，严格按时执行指令，执行程序时，CPU首先取指令，然后译码，由时序电路产生的一系列控制信号完成规定的操作</p>
+<p>时序信号分为两类</p>
+<ul>
+<li>对片内各个功能部件进行控制，用户无需了解</li>
+<li><strong>对片外存储器或I&#x2F;O的控制</strong></li>
+</ul>
+<p><strong>时钟频率直接影响单片机运行速度</strong></p>
+<p>分为两种</p>
+<ul>
+<li>内部时钟方式：内部集成了一个高增益的反相放大器，外部只需要接一个晶振（11.0592）两个电容即可</li>
+<li>外部时钟方式：利用现成的外部振荡器产生脉冲信号，一般用于控制多个单片机，使用外部振荡器时XLAT2要悬空</li>
+</ul>
+<p>时钟周期：时钟信号的基本时间单位</p>
+<p>机器周期：单片机完成一个基本操作所需要的时间，一个机器周期可能包含若干个时钟周期，S51位12个时钟周期为一个机器周期，<strong>一个机器周期有6个状态，1个状态有2拍，一拍代表一个时钟周期</strong></p>
+<p>指令周期：执行一条指令所需要的时间，一般一个指令周期为一个机器周期</p>
+<p><strong>复位时只需要在RST引脚给一个两个机器周期的高电平即可复位</strong></p>
+<p><strong>单片机最小系统：单片机，时钟电路，复位电路</strong></p>
+<h3 id="低功耗模式"><a href="#低功耗模式" class="headerlink" title="低功耗模式"></a>低功耗模式</h3><p><strong>空闲模式IDLE：切断驱动CPU的时钟，退出方式：响应中断，硬件复位</strong></p>
+<p><strong>掉电保持模式PD：切断所有时钟，维持单片机中RAM，特殊功能寄存器中的内容，该模式可以由内部电源供电</strong></p>
+<p>PCON特殊功能寄存器（87H）：</p>
+<ul>
+<li>SMOD：串行通信波特率的选择</li>
+<li>GF1：通用标志位</li>
+<li>GF0：通用标志位</li>
+<li>PD：掉电保持模式控制位，为1时进入掉电保持模式</li>
+<li>IDL：空闲状态控制位，为1时进入空闲状态</li>
+</ul>
+<h3 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h3><p>寻址方式：指令中说明操作数所在位置的方法</p>
+<ul>
+<li><p>寄存器寻址：如MOV A，Rx 将Rx中的数送入A累加器中，Rx为当前使用的寄存器组中的R0<del>R7，即RAM中的00H</del>1FH</p>
+</li>
+<li><p>直接寻址：如MOV  A，40H表示把RAM中40H所指向的数据送入累加器A中，也可以MOV   30H , 40H意思为把40H所指向的数据送入30H中，<strong>是访问片内所有特殊功能寄存器的唯一方式</strong></p>
+</li>
+<li><p><strong>寄存器间接寻址：如MOV A , @Ri (I&#x3D;0或1)     表示Ri中存放的是操作数的地址，通过该地址找到该数据存到累加器A中</strong></p>
+</li>
+<li><p>立即数寻址方式：如 MOVC A ,#40H ，表示直接将40H送给累加器A</p>
+</li>
+<li><p><strong>基址加变址寻址方式：基址寄存器只能是PC或DPTR，变址为累加器A，如MOV A , @A+DPTR，两者相加作为16位地址进行寻址</strong></p>
+</li>
+<li></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+     
+    
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>------------</div>
+    
+</div>
+   </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>金东铉
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/02/10/%E5%8D%95%E7%89%87%E6%9C%BA/" title="单片机笔记">http://example.com/2023/02/10/单片机/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">微信</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/10/JAVA%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/" rel="prev" title="Java笔记">
+      <i class="fa fa-chevron-left"></i> Java笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/02/10/Servelet/" rel="next" title="Servlet入门">
+      Servlet入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">单片机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AT89S51"><span class="nav-number">1.1.</span> <span class="nav-text">AT89S51</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E7%94%B5%E8%B7%AF%E4%B8%8E%E6%97%B6%E5%BA%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">时钟电路与时序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E5%8A%9F%E8%80%97%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">低功耗模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">指令系统</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="金东铉"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">金东铉</p>
+  <div class="site-description" itemprop="description">希望现在的自己配得上所期望的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Martin01Kim" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Martin01Kim" rel="noopener" target="_blank"><i class="fa fa-cloud fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2302539593@qq.com" title="E-Mail → 2302539593@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      自用网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/weixin_44407238/article/details/112799416" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44407238&#x2F;article&#x2F;details&#x2F;112799416" rel="noopener" target="_blank">硬件知识</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/31880831/?spm_id_from=333.999.0.0" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;31880831&#x2F;?spm_id_from&#x3D;333.999.0.0" rel="noopener" target="_blank">高质量网课</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-01 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">金东铉</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+ 
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共49.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
