@@ -195,6 +195,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kim-Donghyun">
+      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小金的学习日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" class="post-title-link" itemprop="url">模电笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-10 22:07:08" itemprop="dateCreated datePublished" datetime="2023-02-10T22:07:08+08:00">2023-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-17 00:06:51" itemprop="dateModified" datetime="2023-03-17T00:06:51+08:00">2023-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" itemprop="url" rel="index"><span itemprop="name">模拟电子电路</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="电阻"><a href="#电阻" class="headerlink" title="电阻"></a>电阻</h2><h3 id="上拉电阻与下拉电阻"><a href="#上拉电阻与下拉电阻" class="headerlink" title="上拉电阻与下拉电阻"></a><strong>上拉电阻与下拉电阻</strong></h3><p><img src="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230316211019684.png" alt="image-20230316211019684"></p>
+<p>上拉电阻：使空闲状态时，电路保持在高电平</p>
+<p>下拉电阻：使空闲状态时，电路保持在低电平</p>
+<h3 id="电阻的应用"><a href="#电阻的应用" class="headerlink" title="电阻的应用"></a>电阻的应用</h3><ul>
+<li>钳位：上下拉电阻，通常不希望高阻态的出现，通常使用上下拉电阻将点位限制在高电平或低电平</li>
+<li>拉电流：如I2C总线中，在总线上增加上拉电阻，增加总线上电流，提高驱动力</li>
+<li>增强抗干扰能力：针对于CMOS芯片中，不使用的引脚常常不会悬空，而是接一个上拉电阻提供协防电路</li>
+<li>阻抗匹配：长距离传输时，阻抗不匹配会引起反射，一般都会串联电阻消除阻抗不匹配</li>
+</ul>
+<h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><p>常用的上拉电阻有4.7K，10K，应该如何选择呢</p>
+<ul>
+<li>上下拉的电阻可以根据阻值的大小，分为强拉和弱拉，拉电阻阻值越小，拉电流能力越强，但是相应的功耗也越大</li>
+<li>在高速电路中，过大的上拉电阻可能会导致信号的上升沿缓慢，过小的上拉电阻可能会导致信号的低电平过高（大于0V，可能会导致低电平被判定为高电平）</li>
+<li>针对于IO口内部带上下拉电阻，可以设置为高低电平模式，或高阻态模式，减小功耗</li>
+</ul>
+<p>阻值计算</p>
+<ul>
+<li><p>通常来说，要确保高电平有效，上拉电阻要明显小于负载阻抗，否则会导致输出的高电平不足</p>
+</li>
+<li><p>电阻的最小值要保证电流不能超过场效应管的额定电流</p>
+</li>
+</ul>
+<p>计算出最大值和最小值，在中间取值即可，如果低电平要求严格，那么上拉电阻要尽可能的小，如果尽可能考虑低功耗，那么上拉电阻要尽可能大</p>
+<h2 id="电容"><a href="#电容" class="headerlink" title="电容"></a>电容</h2><p>电容器的串并联分压公式</p>
+<p><strong>串联公式：C&#x3D;C1C2&#x2F;(C1+C2)</strong></p>
+<p><strong>并联公式C&#x3D;C1+C2+C3</strong></p>
+<p><strong>补充部分：串联分压比V1&#x3D;C2&#x2F;(C1+C2)V…电容越大分得电压越小，交流直流条件下均如此</strong></p>
+<p><strong>并联分流比I1&#x3D;C1&#x2F;(C1+C2)I…电容越大通过的电流越大</strong></p>
+<p>电容阻抗与其频率有关，理想情况下频率越高阻抗越小，但实际情况下电容可看作一个电容电感串联的高效电路，因为电感频率越高阻抗越大，所以当频率高于电容谐振频率时，电容实际会表现出电感特性</p>
+<p><img src="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2R5eDE5OTM=,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述"></p>
+<h3 id="电容降压"><a href="#电容降压" class="headerlink" title="电容降压"></a>电容降压</h3><p>利用电容容抗来取代回路中需要的电阻</p>
+<p><strong>优点:减少了降压元件所消耗的功率，既可以降压，又不消耗电能</strong></p>
+<p><strong>实际使用时要注意:</strong></p>
+<p>要为电容提供一个可供其放电的回路，用电阻与电容串联，以防止实际使用后断电时触摸插孔会使电容放电导致触电。</p>
+<p>因负载通常都需要直流，所以回路中一般使用二极管来构成回路，由此衍生出如下两种降压电路</p>
+<ul>
+<li><p><strong>半波整流电路</strong></p>
+</li>
+<li><p>电路中串联，并联两个二极管，D1为正半周期给RL提供负载，D2为C1提供放电回路，此时负载的电流为全波整流的一半，负半周期的电能送回给电源</p>
+</li>
+</ul>
+<p><img src="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/20210119113015910.jpeg" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>全波整流电路</strong></li>
+<li>为组件RL，正半周期都提供了良好的负载，此时负载的电流翻倍</li>
+</ul>
+<p><img src="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDQwNzIzOA==,size_16,color_FFFFFF,t_70#pic_center.jpeg" alt="在这里插入图片描述"></p>
+<ul>
+<li>实际使用时，因为电路开启时，电容相当于短路，需要电容与一个电阻串联，防止后续器件烧伤，串联电阻的电阻值选取标准以后续器件的最小额定电流为准，当然实际情况电压会比额定电压大，所以电阻计算时应视情况而定</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+     
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,7 +358,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-16 21:07:19" itemprop="dateModified" datetime="2023-03-16T21:07:19+08:00">2023-03-16</time>
+                <time title="修改时间：2023-03-16 23:43:21" itemprop="dateModified" datetime="2023-03-16T23:43:21+08:00">2023-03-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,6 +474,8 @@
 </ul>
 <p>缺点：输出噪声较大</p>
 <p>优点：效率高</p>
+<p><strong>BUCK电路相关计算，伏秒法则</strong></p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316230030306.png" alt="image-20230316230030306"></p>
 <h4 id="隔离型BUCK变换器（单端正激变换器）"><a href="#隔离型BUCK变换器（单端正激变换器）" class="headerlink" title="隔离型BUCK变换器（单端正激变换器）"></a>隔离型BUCK变换器（单端正激变换器）</h4><p>在传统的BUCK变换器，中间加入了个隔离变压器</p>
 <ul>
 <li>引入了输入电源和负载电压的电气隔离</li>
@@ -425,118 +559,47 @@
 <p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183711780.png" alt="image-20230316183711780"></p>
 <p>电流型逆变电路进行PWM控制，得到的就是电流型PWM</p>
 <p>电压型逆变电路进行PWM控制，得到的就是电压型PWM</p>
-<h2 id="单端反激式开关电源"><a href="#单端反激式开关电源" class="headerlink" title="单端反激式开关电源"></a>单端反激式开关电源</h2>
-      
-    </div>
-
-    
-    
-    
-     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/10/JavaWeb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kim-Donghyun">
-      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小金的学习日志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/10/JavaWeb/" class="post-title-link" itemprop="url">Mysql学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-10 22:07:08" itemprop="dateCreated datePublished" datetime="2023-02-10T22:07:08+08:00">2023-02-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-16 01:03:14" itemprop="dateModified" datetime="2023-03-16T01:03:14+08:00">2023-03-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Mysql基础"><a href="#Mysql基础" class="headerlink" title="Mysql基础"></a>Mysql基础</h1><ul>
-<li>连接层</li>
-<li>服务层</li>
-<li>引擎层</li>
-<li>存储层</li>
+<h2 id="单端反激式开关电源"><a href="#单端反激式开关电源" class="headerlink" title="单端反激式开关电源"></a>单端反激式开关电源</h2><p>反激式变换器</p>
+<ul>
+<li>由buck-boost变换器推演过来，将电路中的电感与MOS管换成一个隔离变压器，如下图所示</li>
 </ul>
-<h2 id="DDL-x2F-DML-x2F-DQL：对数据库，表进行操作的语句"><a href="#DDL-x2F-DML-x2F-DQL：对数据库，表进行操作的语句" class="headerlink" title="DDL&#x2F;DML&#x2F;DQL：对数据库，表进行操作的语句"></a><strong>DDL&#x2F;DML&#x2F;DQL：对数据库，表进行操作的语句</strong></h2><p>Create database name;  创建一个名为name的数据库</p>
-<p>drop database name;     删除一个名为name的数据库</p>
-<p>use database name;        进入数据库</p>
-<hr>
-<p>show tables;   显示所有表</p>
-<p>desc table ; 查询表的结构</p>
-<p>create table tb_user(	id int comment ‘编号’	,	name varchar(20),	password varchar(20)	);  创建表，comment注释</p>
-<p>drop table name；删除表</p>
-<p>alter table  表名  rename to   新名字；     重命名</p>
-<p>alter table 表名   add 名称，数据类型       添加一列 	           </p>
-<p>alter table 表名   modify 名字，数据类型；修改一列的数据类型</p>
-<p>alter table 表名  rename to 新表名;     修改列名</p>
-<p>alter table 表名  change 名字，新名字，数据类型；  列名与数据类型一起修改</p>
-<p>alter table 表名  drop 列名；删除某列</p>
-<hr>
-<p>整数 int                               id int</p>
-<p>字符串 varchar（长度）  name varchar(20);  存储两个字符，就会开辟两个空间，最大开辟20个   节省空间，性能低</p>
-<p> char 定长字符串              name char(10)  若存储两个字符，仍然会被看作10个空间，没存储的空间用空格代替    存储性能高，浪费空间</p>
-<p>Date 日期                          birthday date</p>
-<p>TIME 时间                          lunch time</p>
-<p>DateTime 日期+时间       anniversary datetime</p>
-<p>浮点数double（总长度，小数点后保留几位） money double(	5	,	2	);  表示存储0-100.00的数</p>
-<hr>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/10/JavaWeb/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316222728924.png" alt="image-20230316222728924"></p>
+<p>工作原理与Buck-Boost电路基本相似</p>
+<p><strong>当开关管导通时，Vin给变压器种电感充电，此时输出电容放电，为负载提供电压，当开关管断开时，变压器放电，为电容充电的同时，给负载供电</strong></p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316230853235.png" alt="image-20230316230853235"></p>
+<p>相应的计算要掌握，关键点：伏秒平衡</p>
+<p>何为单端反激式开关电源：</p>
+<ul>
+<li>单端：表示磁芯仅工作在磁滞回线的一侧</li>
+<li>反激：表示开关管导通时，输出回路中的二极管截止，初级绕组NP存储能量，当开关断开时，初级绕组的能量通过次级绕组激VD1整流和电容C滤波后向负载输出</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>结构简单，可以同时输出不同的电压，且有较好的电压调整率</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>电压纹波较大，外特性差，适用与固定负载</li>
+</ul>
+<p>原理框图</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316231608804.png" alt="image-20230316231608804"></p>
+<p>正激与反激的区别</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316233239960.png" alt="image-20230316233239960"></p>
+<p>正激指的是在开关管导通时，就已经有电流通过负载</p>
+<p>​        <strong>根据变压器作用的不同来区分</strong></p>
+<ul>
+<li><p>反激：变压器起到隔离电气，电压匹配的作用，同时也起到储能的作用，总体来说，前半部分起到变压器的作用，而后半部分起到电感的作用</p>
+</li>
+<li><p>正激：变压器只起到了变压器的作用，没有起到电感的作用</p>
+<p><strong>工作情况来分：</strong></p>
+</li>
+<li><p>正激：初级线圈工作时，次级线圈也在工作</p>
+</li>
+<li><p>反激：初级线圈工作时，次级线圈没有工作</p>
+</li>
+</ul>
+<p><strong>正激与反激的工作最大区别是，当开关管关断时，正激的输出主要靠储能电感和续流二级管来维持输出，而反激的输出主要靠变压器次级释放能量来维持输出。</strong></p>
+<h2 id="半桥式开关电源"><a href="#半桥式开关电源" class="headerlink" title="半桥式开关电源"></a>半桥式开关电源</h2><h2 id="全桥式开关电源"><a href="#全桥式开关电源" class="headerlink" title="全桥式开关电源"></a>全桥式开关电源</h2><h2 id="推挽式开关电源"><a href="#推挽式开关电源" class="headerlink" title="推挽式开关电源"></a>推挽式开关电源</h2>
       
     </div>
 
@@ -714,7 +777,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共54.4k字</span>
+  <span class="post-count">博客全站共55k字</span>
 </div>
         
 
