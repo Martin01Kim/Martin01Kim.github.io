@@ -29,17 +29,17 @@
 <meta property="og:site_name" content="小金的学习日志">
 <meta property="og:description" content="总线协议并行：同一时间总线能发若干个位数的数据 串行：同一时间总线只发一位的数据，并一直维持这种传送方式 单工：A只能给B传送数据 双工：A可以给B传送数据，也可以从B接受数据 半双工：接收数据，传送数据不能同时进行 全双工：接收，传输可以同时进行 波特率：串口通信速度(BPS)，每秒钟能传送位数的个数 串口串行通信接口(COM)：一次最多可以发送一个字节，发送多个字节必须先发送一个字节停止，再起">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226144803956.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013807179.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013824207.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228173759767.png">
-<meta property="og:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228175742798.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226144803956.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226013807179.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226013824207.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230228173759767.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230228175742798.png">
 <meta property="article:published_time" content="2023-02-10T14:07:08.000Z">
 <meta property="article:modified_time" content="2023-03-15T17:04:28.765Z">
 <meta property="article:author" content="Kim-Donghyun">
 <meta property="article:tag" content="I2C、SPI、UART、RS232、RS485、USB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226144803956.png">
+<meta name="twitter:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226144803956.png">
 
 <link rel="canonical" href="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
 
@@ -273,7 +273,7 @@
 <p>同步通信：发送与接受方时钟相同</p>
 <h3 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h3><p>通用异步收发器，串行，异步通用总线，有两条线，一个对外发送，一个对外接受，属于全双工通信线路</p>
 <p><strong>接收器与发送器波特率误差不能超过百分之10</strong></p>
-<h4 id="帧格式"><a href="#帧格式" class="headerlink" title="帧格式"></a>帧格式</h4><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226144803956.png" alt="image-20230226144803956"></p>
+<h4 id="帧格式"><a href="#帧格式" class="headerlink" title="帧格式"></a>帧格式</h4><p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226144803956.png" alt="image-20230226144803956"></p>
 <p><strong>起始位，数据位，校验位（可有可无），停止位（1或2位）</strong></p>
 <p>检验过程：检测数据位中1的个数，1若为偶数个则校验位为1，只能检查是否有错误，不能修正错误</p>
 <p>校验位加数据位中1的个数为偶数为偶校验，否则为奇校验</p>
@@ -334,8 +334,8 @@
 <li>I2C总线相当于OD(开漏)，因为输出为高阻态，所以要加上拉电平将其拉到高电平确定输出</li>
 <li>上拉电阻的最小值由上拉源确定，上拉电阻的最大值由总线电容决定</li>
 </ul>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013807179.png" alt="image-20230226013807179"></p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013824207.png" alt="image-20230226013824207"></p>
+<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013807179.png" alt="image-20230226013807179"></p>
+<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013824207.png" alt="image-20230226013824207"></p>
 <ul>
 <li>I2C总线串联保护电阻，抑制干扰脉冲进入电路，选值一般都很小</li>
 </ul>
@@ -434,7 +434,7 @@
 <li>设备</li>
 </ul>
 <p>最顶层为主机，连接到下一层的集线器，下一层的集线器再连接到更下一层的集线器与设备，如下图所示</p>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228173759767.png" alt="image-20230228173759767"></p>
+<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228173759767.png" alt="image-20230228173759767"></p>
 <h4 id="当一个设备从集线器上接入时"><a href="#当一个设备从集线器上接入时" class="headerlink" title="当一个设备从集线器上接入时"></a>当一个设备从集线器上接入时</h4><ul>
 <li>主机会检测到集线器状态的改变，发出一个命令使该端口有效并进行设置</li>
 <li>设备接收到命令，进行响应，主机收到设备的响应，了解该设备用哪种驱动程序，并分配给其一个唯一的地址</li>
@@ -446,7 +446,7 @@
 <li>同步字段：使USB设备与总线的包传输速率同步，固定为00000001</li>
 <li>PID字段：用来表示数据封包的类型（令牌，数据，握手，特殊）</li>
 </ul>
-<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228175742798.png" alt="image-20230228175742798"></p>
+<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228175742798.png" alt="image-20230228175742798"></p>
 <ul>
 <li>数据字段：用来携带传输的数据，内容长度根据标识符，传输类型的不同而不同，先传低位，后传高位</li>
 </ul>
@@ -550,10 +550,7 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/02/10/JAVA%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/" rel="prev" title="Java笔记">
-      <i class="fa fa-chevron-left"></i> Java笔记
-    </a></div>
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
     <a href="/2023/02/10/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" rel="next" title="数电笔记">
       数电笔记 <i class="fa fa-chevron-right"></i>
@@ -632,20 +629,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -687,7 +684,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="250" height="250" id="resCanvas" style="width=100%">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
         </canvas>
     </div>
 </div>
@@ -722,7 +719,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共49.2k字</span>
+  <span class="post-count">博客全站共50.9k字</span>
 </div>
         
 
