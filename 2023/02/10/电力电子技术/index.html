@@ -22,13 +22,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="整流电路将交流电整成直流电  按交流输入相数分为：单相电路和多相电路 按电路结构分为零式电路和桥式电路，零式又分为半波和全波 按组成器件分为不可控，半控，全控 按变压器二次测流的方向是单向还是双向分为单拍电路与双拍电路  单相半波可控整流电路  触发延迟角：表示从晶闸管开始承受电压到施加触发脉冲的角度，用a表示，也称处发角或控制角 导通角：表示晶闸管在一个周期处于通态的角度   表示电压在一个周期">
+  <meta name="description" content="线性稳压器LDO线性稳压器分为：采样电路，调整管，放大电路，基准电压 优点：成本低，噪音小，静态电流小，需要外接的元件也很少，一般只有旁路电容  工作原理：输出电压通过采样电阻的分压，与基准电压去比较，输入给误差放大器，控制MOS管关断，其中MOS管可以看作一个滑动变阻器以此来保证输出电压Uo的稳定  与DC-DC的区别  输出电压为固定的 输入与输出电压差很小，而DC-DC的压差不一定，可以是降">
 <meta property="og:type" content="article">
 <meta property="og:title" content="电力电子技术笔记">
 <meta property="og:url" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="小金的学习日志">
-<meta property="og:description" content="整流电路将交流电整成直流电  按交流输入相数分为：单相电路和多相电路 按电路结构分为零式电路和桥式电路，零式又分为半波和全波 按组成器件分为不可控，半控，全控 按变压器二次测流的方向是单向还是双向分为单拍电路与双拍电路  单相半波可控整流电路  触发延迟角：表示从晶闸管开始承受电压到施加触发脉冲的角度，用a表示，也称处发角或控制角 导通角：表示晶闸管在一个周期处于通态的角度   表示电压在一个周期">
+<meta property="og:description" content="线性稳压器LDO线性稳压器分为：采样电路，调整管，放大电路，基准电压 优点：成本低，噪音小，静态电流小，需要外接的元件也很少，一般只有旁路电容  工作原理：输出电压通过采样电阻的分压，与基准电压去比较，输入给误差放大器，控制MOS管关断，其中MOS管可以看作一个滑动变阻器以此来保证输出电压Uo的稳定  与DC-DC的区别  输出电压为固定的 输入与输出电压差很小，而DC-DC的压差不一定，可以是降">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316190634844.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316191240815.png">
 <meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316155726993.png">
 <meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316160338798.png">
 <meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316160757552.png">
@@ -41,12 +43,18 @@
 <meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316174759474.png">
 <meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175742649.png">
 <meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175943922.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316193557967.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316184204734.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316184334671.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183140117.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183428596.png">
+<meta property="og:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183711780.png">
 <meta property="article:published_time" content="2023-02-10T14:07:08.000Z">
-<meta property="article:modified_time" content="2023-03-16T10:14:41.445Z">
+<meta property="article:modified_time" content="2023-03-16T13:07:19.127Z">
 <meta property="article:author" content="Kim-Donghyun">
 <meta property="article:tag" content="Buck,Boost,Ldo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316155726993.png">
+<meta name="twitter:image" content="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316190634844.png">
 
 <link rel="canonical" href="http://example.com/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/">
 
@@ -242,7 +250,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-16 18:14:41" itemprop="dateModified" datetime="2023-03-16T18:14:41+08:00">2023-03-16</time>
+                <time title="修改时间：2023-03-16 21:07:19" itemprop="dateModified" datetime="2023-03-16T21:07:19+08:00">2023-03-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,7 +273,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="整流电路"><a href="#整流电路" class="headerlink" title="整流电路"></a>整流电路</h2><p>将交流电整成直流电</p>
+        <h2 id="线性稳压器LDO"><a href="#线性稳压器LDO" class="headerlink" title="线性稳压器LDO"></a>线性稳压器LDO</h2><p><strong>线性稳压器分为：采样电路，调整管，放大电路，基准电压</strong></p>
+<p>优点：成本低，噪音小，静态电流小，需要外接的元件也很少，一般只有旁路电容</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316190634844.png" alt="image-20230316190634844"></p>
+<p>工作原理：输出电压通过采样电阻的分压，与基准电压去比较，输入给误差放大器，控制MOS管关断，其中MOS管可以看作一个滑动变阻器以此来保证输出电压Uo的稳定</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316191240815.png" alt="image-20230316191240815"></p>
+<p>与DC-DC的区别</p>
+<ul>
+<li>输出电压为固定的</li>
+<li>输入与输出电压差很小，而DC-DC的压差不一定，可以是降压也可以是升压，压差小的原因，压差大会导致流过MOS管，即滑动变阻器的电流变大，导致消耗的功率变高，所以低压差线性稳压器的压差要小</li>
+<li>最大输出电流小，如果输出电流大的话调整管消耗的电流比较大</li>
+<li>可以比较高，但一般来说效率低，DC-DC效率很高，一般在百分之80到百分之90</li>
+<li>成本低，DC-DC成本较高，因为有电阻，电容，电感等器件</li>
+</ul>
+<p>注意78XX，79XX是线性稳压器件，并不是低压差线性稳压器（LDO），其要求输出电压比输入电压高2-3伏</p>
+<h2 id="整流电路"><a href="#整流电路" class="headerlink" title="整流电路"></a>整流电路</h2><p>将交流电整成直流电</p>
 <ul>
 <li>按交流输入相数分为：单相电路和多相电路</li>
 <li>按电路结构分为零式电路和桥式电路，零式又分为半波和全波</li>
@@ -352,7 +374,9 @@
 </ul>
 <p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316181415585.png" alt="image-20230316181415585"></p>
 <p>绿色方框内为传统BUCK电路的开关，右侧为正常电路模型</p>
-<h3 id="升压斩波型DC-DC电路（BOOST）"><a href="#升压斩波型DC-DC电路（BOOST）" class="headerlink" title="升压斩波型DC-DC电路（BOOST）"></a>升压斩波型DC-DC电路（BOOST）</h3><p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316170011700.png" alt="image-20230316170011700"></p>
+<p><strong>单端表示变压器磁通仅在单方面变化</strong></p>
+<p><strong>正激表示电管开关管开启时将能量直接传送给负载</strong></p>
+<h4 id="升压斩波型DC-DC电路（BOOST）"><a href="#升压斩波型DC-DC电路（BOOST）" class="headerlink" title="升压斩波型DC-DC电路（BOOST）"></a>升压斩波型DC-DC电路（BOOST）</h4><p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316170011700.png" alt="image-20230316170011700"></p>
 <p>工作流程：</p>
 <ul>
 <li>开关导通时，输入电压流向电感，电感电流线性增加，电感储能增加，电源向电感转移电能，此时负载通过电容C供电</li>
@@ -372,7 +396,60 @@
 <p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175943922.png" alt="image-20230316175943922"></p>
 <p>缺点：效率不高</p>
 <p>优点：得到的电流较小</p>
-
+<h4 id="升降压斩波电路-Buck-Boost"><a href="#升降压斩波电路-Buck-Boost" class="headerlink" title="升降压斩波电路(Buck-Boost)"></a>升降压斩波电路(Buck-Boost)</h4><p>Buck与Boost的组合，既可以升压，也可以降压，但要注意输出电容的下端为正，基本的Buck，Boost的输出电容都是上端为正</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316193557967.png" alt="image-20230316193557967"></p>
+<h3 id="同步整流与异步整流"><a href="#同步整流与异步整流" class="headerlink" title="同步整流与异步整流"></a>同步整流与异步整流</h3><p>当功率管断开时，需要用不同的续流元器件进行续流，根据所用到的续流元器件种类的不同，可以分为同步整流与异步整流</p>
+<p>以BUCK电路为例，若电路中只有一个MOS管，续流回路中所用的为二极管续流（不需要外加电路控制器通断），所形成的整流方式则为异步整流，</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316184204734.png" alt="image-20230316184204734"></p>
+<p>若将续流回路中的二极管替换为MOS管，用额外的开关去控制其关断，则被称为同步整流，因为必须要根据电源的开关时序去同步控制S1,S2的关断</p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316184334671.png" alt="image-20230316184334671"></p>
+<p>异步整流与同步整流的两大区别：</p>
+<ul>
+<li>异步整流所使用的续流元器件为二极管，不需要额外的开关去控制其关断，而同步整流下侧使用的是MOS管，需要使用额外的开关控制器关断，如果S1，S2同步开启或关闭，则Vin会直接流入GND，所以需要一个滞留时间</li>
+<li>在轻负载时，电感电流通过开关变成三角波，当负载电流变得非常少时，电感电流会下降至零交叉级，在此状态下，异步情况，二极管电流只能单向流动，因此橘色波形没有进入负领域的波形电流。同步模式，因为其可逆流，所以波形可以进入负领域，称为连续模式</li>
+</ul>
+<p>异步整流的优缺点：</p>
+<ul>
+<li>二极管两端压降恒定</li>
+<li>效率低：因为二极管两端压降恒定，即使当回路中的电流很大时，二极管两端压降不变，在输出电压很低时，二极管两端所消耗的功率占比就会提高，所以大电流时功率低</li>
+<li>生产成本比较便宜</li>
+<li>可以用在输出电压较高的情况：因为二极管两端电压恒定，所以在输出电压很高的情况下，二极管所消耗的功率比率很降低，效率比较高，并且电路结构比较简单</li>
+</ul>
+<p>同步整流优缺点：</p>
+<ul>
+<li>一般使用的都是导通压降很低的MOS管</li>
+<li>效率较高：因为MOS管的导通压降远小于二极管的导通压降，所以在相同电流时，在MOS管上损耗的功率远小于二极管上损耗的功率，所以效率比较高</li>
+<li>需要额外的控制电路，因为MOS管需要驱动电路，使上下MOS管能同步，而非同步的二极管是自然整流的，不需要额外的控制电路驱动二极管关断</li>
+<li>成本比较高</li>
+</ul>
+<p>所以总体来说，异步整流，同步整流需要考虑不同的点去选择</p>
+<ul>
+<li>效率</li>
+<li>成本</li>
+<li>可靠性：如果两个MOS管导通时间没有控制好，使两个MOS管同时导通，会使下方的控制MOS管损坏，而二极管很稳定</li>
+</ul>
+<p>思考：为什么在开关电源中，开关频率越高，电感越小，开关频率为什么不能太高</p>
+<ul>
+<li>在使用同一电感下，不同的开关频率，根据伏秒平衡，电感所充电的电能与释放的电能要相等，就会导致，在高的开关频率下，电感所需要存储，释放的电感就会小，因此不需要太大的电阻值</li>
+<li>在高的开关频率下，流过开关管的电压与流过开关管的电流会有重合时间，这会导致在开关管上会有电能的损耗，所以开关频率越大，开关损耗就越大</li>
+<li>并且开关有延迟时间，并不是开启之后立即导通，关闭之后立即关断</li>
+</ul>
+<h2 id="PWM控制的基本原理"><a href="#PWM控制的基本原理" class="headerlink" title="PWM控制的基本原理"></a>PWM控制的基本原理</h2><p>基本思想：</p>
+<ul>
+<li>冲量相等而形状不同的窄脉冲，如果加在具有惯性的环节上时，效果基本相同</li>
+</ul>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183140117.png" alt="image-20230316183140117"></p>
+<p>不同的窄脉冲加在电路中，输出的电流形状基本一致，即为面积等效原理</p>
+<p><strong>利用一组，等幅不等宽的脉冲，去表示一个正弦信号</strong></p>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183428596.png" alt="image-20230316183428596"></p>
+<ul>
+<li>单极性PWM：等幅不等宽的脉冲，在一个半周期内仅有正值或负值</li>
+<li>双极性PWM：等幅不等宽的脉冲，在所有周期，均有正值与负值两种极性</li>
+</ul>
+<p><img src="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316183711780.png" alt="image-20230316183711780"></p>
+<p>电流型逆变电路进行PWM控制，得到的就是电流型PWM</p>
+<p>电压型逆变电路进行PWM控制，得到的就是电压型PWM</p>
+<h2 id="单端反激式开关电源"><a href="#单端反激式开关电源" class="headerlink" title="单端反激式开关电源"></a>单端反激式开关电源</h2>
     </div>
 
     
@@ -446,12 +523,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" rel="prev" title="通信总线">
-      <i class="fa fa-chevron-left"></i> 通信总线
+    <a href="/2023/02/10/JavaWeb/" rel="prev" title="Mysql学习">
+      <i class="fa fa-chevron-left"></i> Mysql学习
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/02/10/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" rel="next" title="数电笔记">
-      数电笔记 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/02/10/JAVA%E5%9F%BA%E7%A1%80%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/" rel="next" title="Java笔记">
+      Java笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -511,7 +588,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">整流电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%9B%B8%E5%8D%8A%E6%B3%A2%E5%8F%AF%E6%8E%A7%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">单相半波可控整流电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">斩波电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88DC-DC%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">直流斩波电路（DC-DC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88Buck%E7%94%B5%E8%B7%AF%EF%BC%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">降压斩波电路（Buck电路）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E5%9E%8BBUCK%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%88%E5%8D%95%E7%AB%AF%E6%AD%A3%E6%BF%80%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">隔离型BUCK变换器（单端正激变换器）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E5%8E%8B%E6%96%A9%E6%B3%A2%E5%9E%8BDC-DC%E7%94%B5%E8%B7%AF%EF%BC%88BOOST%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">升压斩波型DC-DC电路（BOOST）</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%A8%B3%E5%8E%8B%E5%99%A8LDO"><span class="nav-number">1.</span> <span class="nav-text">线性稳压器LDO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">整流电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%9B%B8%E5%8D%8A%E6%B3%A2%E5%8F%AF%E6%8E%A7%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">单相半波可控整流电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">斩波电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88DC-DC%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">直流斩波电路（DC-DC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88Buck%E7%94%B5%E8%B7%AF%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">降压斩波电路（Buck电路）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E5%9E%8BBUCK%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%88%E5%8D%95%E7%AB%AF%E6%AD%A3%E6%BF%80%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%89"><span class="nav-number">3.1.2.</span> <span class="nav-text">隔离型BUCK变换器（单端正激变换器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E5%8E%8B%E6%96%A9%E6%B3%A2%E5%9E%8BDC-DC%E7%94%B5%E8%B7%AF%EF%BC%88BOOST%EF%BC%89"><span class="nav-number">3.1.3.</span> <span class="nav-text">升压斩波型DC-DC电路（BOOST）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF-Buck-Boost"><span class="nav-number">3.1.4.</span> <span class="nav-text">升降压斩波电路(Buck-Boost)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%95%B4%E6%B5%81%E4%B8%8E%E5%BC%82%E6%AD%A5%E6%95%B4%E6%B5%81"><span class="nav-number">3.2.</span> <span class="nav-text">同步整流与异步整流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWM%E6%8E%A7%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">PWM控制的基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E7%AB%AF%E5%8F%8D%E6%BF%80%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">5.</span> <span class="nav-text">单端反激式开关电源</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -617,7 +694,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共50.9k字</span>
+  <span class="post-count">博客全站共54.4k字</span>
 </div>
         
 

@@ -25,23 +25,26 @@
   <meta name="description" content="总线协议并行：同一时间总线能发若干个位数的数据 串行：同一时间总线只发一位的数据，并一直维持这种传送方式 单工：A只能给B传送数据 双工：A可以给B传送数据，也可以从B接受数据 半双工：接收数据，传送数据不能同时进行 全双工：接收，传输可以同时进行 波特率：串口通信速度(BPS)，每秒钟能传送位数的个数 串口串行通信接口(COM)：一次最多可以发送一个字节，发送多个字节必须先发送一个字节停止，再起">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通信总线">
-<meta property="og:url" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/index.html">
+<meta property="og:url" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/index.html">
 <meta property="og:site_name" content="小金的学习日志">
 <meta property="og:description" content="总线协议并行：同一时间总线能发若干个位数的数据 串行：同一时间总线只发一位的数据，并一直维持这种传送方式 单工：A只能给B传送数据 双工：A可以给B传送数据，也可以从B接受数据 半双工：接收数据，传送数据不能同时进行 全双工：接收，传输可以同时进行 波特率：串口通信速度(BPS)，每秒钟能传送位数的个数 串口串行通信接口(COM)：一次最多可以发送一个字节，发送多个字节必须先发送一个字节停止，再起">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226144803956.png">
-<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226013807179.png">
-<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226013824207.png">
-<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230228173759767.png">
-<meta property="og:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230228175742798.png">
-<meta property="article:published_time" content="2023-02-10T14:07:08.000Z">
-<meta property="article:modified_time" content="2023-03-15T17:04:28.765Z">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226144803956.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013807179.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013824207.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316204559533.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316202917950.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228173759767.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228175742798.png">
+<meta property="og:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/1298558-20201020212713032-149768353.png">
+<meta property="article:published_time" content="2023-02-20T14:07:08.000Z">
+<meta property="article:modified_time" content="2023-03-16T12:46:29.352Z">
 <meta property="article:author" content="Kim-Donghyun">
 <meta property="article:tag" content="I2C、SPI、UART、RS232、RS485、USB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20230226144803956.png">
+<meta name="twitter:image" content="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226144803956.png">
 
-<link rel="canonical" href="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
+<link rel="canonical" href="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
 
 
 <script id="page-configurations">
@@ -205,7 +208,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -228,14 +231,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-02-10 22:07:08" itemprop="dateCreated datePublished" datetime="2023-02-10T22:07:08+08:00">2023-02-10</time>
+              <time title="创建时间：2023-02-20 22:07:08" itemprop="dateCreated datePublished" datetime="2023-02-20T22:07:08+08:00">2023-02-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-16 01:04:28" itemprop="dateModified" datetime="2023-03-16T01:04:28+08:00">2023-03-16</time>
+                <time title="修改时间：2023-03-16 20:46:29" itemprop="dateModified" datetime="2023-03-16T20:46:29+08:00">2023-03-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +276,7 @@
 <p>同步通信：发送与接受方时钟相同</p>
 <h3 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h3><p>通用异步收发器，串行，异步通用总线，有两条线，一个对外发送，一个对外接受，属于全双工通信线路</p>
 <p><strong>接收器与发送器波特率误差不能超过百分之10</strong></p>
-<h4 id="帧格式"><a href="#帧格式" class="headerlink" title="帧格式"></a>帧格式</h4><p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226144803956.png" alt="image-20230226144803956"></p>
+<h4 id="帧格式"><a href="#帧格式" class="headerlink" title="帧格式"></a>帧格式</h4><p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226144803956.png" alt="image-20230226144803956"></p>
 <p><strong>起始位，数据位，校验位（可有可无），停止位（1或2位）</strong></p>
 <p>检验过程：检测数据位中1的个数，1若为偶数个则校验位为1，只能检查是否有错误，不能修正错误</p>
 <p>校验位加数据位中1的个数为偶数为偶校验，否则为奇校验</p>
@@ -334,8 +337,8 @@
 <li>I2C总线相当于OD(开漏)，因为输出为高阻态，所以要加上拉电平将其拉到高电平确定输出</li>
 <li>上拉电阻的最小值由上拉源确定，上拉电阻的最大值由总线电容决定</li>
 </ul>
-<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013807179.png" alt="image-20230226013807179"></p>
-<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226013824207.png" alt="image-20230226013824207"></p>
+<p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013807179.png" alt="image-20230226013807179"></p>
+<p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013824207.png" alt="image-20230226013824207"></p>
 <ul>
 <li>I2C总线串联保护电阻，抑制干扰脉冲进入电路，选值一般都很小</li>
 </ul>
@@ -355,6 +358,7 @@
 <li>易产生共模干扰，抗噪声比较弱</li>
 <li>传输距离比较短</li>
 </ul>
+<p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316204559533.png" alt="image-20230316204559533"></p>
 <h3 id="RS485"><a href="#RS485" class="headerlink" title="RS485"></a>RS485</h3><p><strong>半双工的工作方式</strong></p>
 <p>类似RS232，也是一个电气标准，为了<strong>解决远距离条件，噪声大条件下信号的传输能力</strong>，该标准<strong>允许连接多个收发器</strong></p>
 <p>信号：</p>
@@ -401,7 +405,10 @@
 <li>I2C有应答机制，SPI无应答机制</li>
 <li>I2C是半双工，spi是全双工</li>
 </ul>
-<h3 id="USB"><a href="#USB" class="headerlink" title="USB"></a>USB</h3><p>USB只允许有一个主机。可分为3个不同的模块</p>
+<h3 id="USB"><a href="#USB" class="headerlink" title="USB"></a>USB</h3><p><strong>一共有4条线，分别为：Vbus，D+，D-，GND</strong></p>
+<p><strong>反向不归零编码(NRZI):用信号电平翻转代表0，信号电平保持代表1，这种编码方式既可以保证数据传输的完整性，也不需要传输过程中包含独立的时钟,但是信号电平长时间保持时，会导致接收器丢失同步信号，所以在信号电平保持最长6个周期后，会将信号电平强制反转，保证时钟周期的同步，而接收器会扔掉自动翻转的0电平，不会对数据传输产生干扰</strong></p>
+<p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316202917950.png" alt="image-20230316202917950"></p>
+<p>USB只允许有一个主机。可分为3个不同的模块</p>
 <ul>
 <li>客户软件：负责USB设备的通信，以实现其功能，不能直接访问USB设备，必须通过系统软件与总线接口进行访问，包括USB设备驱动程序和界面应用程序</li>
 <li>USB系统软件：负责USB逻辑设备进行配置通信，同时管理客户软件启动的数据传输，包括USB总线驱动程序和USB主控制器驱动程序</li>
@@ -434,7 +441,7 @@
 <li>设备</li>
 </ul>
 <p>最顶层为主机，连接到下一层的集线器，下一层的集线器再连接到更下一层的集线器与设备，如下图所示</p>
-<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228173759767.png" alt="image-20230228173759767"></p>
+<p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228173759767.png" alt="image-20230228173759767"></p>
 <h4 id="当一个设备从集线器上接入时"><a href="#当一个设备从集线器上接入时" class="headerlink" title="当一个设备从集线器上接入时"></a>当一个设备从集线器上接入时</h4><ul>
 <li>主机会检测到集线器状态的改变，发出一个命令使该端口有效并进行设置</li>
 <li>设备接收到命令，进行响应，主机收到设备的响应，了解该设备用哪种驱动程序，并分配给其一个唯一的地址</li>
@@ -446,7 +453,7 @@
 <li>同步字段：使USB设备与总线的包传输速率同步，固定为00000001</li>
 <li>PID字段：用来表示数据封包的类型（令牌，数据，握手，特殊）</li>
 </ul>
-<p><img src="/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230228175742798.png" alt="image-20230228175742798"></p>
+<p><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228175742798.png" alt="image-20230228175742798"></p>
 <ul>
 <li>数据字段：用来携带传输的数据，内容长度根据标识符，传输类型的不同而不同，先传低位，后传高位</li>
 </ul>
@@ -470,12 +477,83 @@
 <li><p>握手包：仅包含一个数据域：一个SYNC字段，两个PID字段</p>
 </li>
 </ul>
-<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p><strong>USB上一次信息接收或发送的过程称为事务</strong></p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p><strong>USB上一次信息接收或发送的过程称为事务</strong></p>
 <p>类型包括：</p>
 <ul>
 <li>IN输入事务处理</li>
 <li>OUT输出事务处理</li>
 <li>SETUP设置事务处理</li>
+</ul>
+<p>输入事务时：</p>
+<ul>
+<li>主机发送一个令牌信息包</li>
+<li>从机接收到后，如果设备正常运行，则发送一个数据包，若设备忙或设备出错，则发送一个握手包（NACK或STALL）</li>
+<li>主机接收到后则回应一个握手包（ACK）</li>
+</ul>
+<p>输出事务时</p>
+<ul>
+<li>主机发送一个令牌信息包</li>
+<li>紧接着主机再发送一个数据包</li>
+<li>从机接收到后发送一个握手包（ACK），若设备忙或出错时则发送NACK或STALL握手包</li>
+</ul>
+<p>设置事务时与输出事务过程相同</p>
+<p><strong>再USB当中，有4种传输类型</strong></p>
+<ul>
+<li>控制传输</li>
+<li>中断传输</li>
+<li>批量传输</li>
+<li>同步传输</li>
+</ul>
+<h5 id="控制传输"><a href="#控制传输" class="headerlink" title="控制传输"></a>控制传输</h5><p>控制传输有2到3个阶段组成</p>
+<ul>
+<li>建立阶段（Setup）：主机从USB获取设备配置信息，并设置设备的配置值，数据交换包含了令牌包，数据包，握手包，它的作用是执行了一个设置的数据交换，并定义此次控制传输的内容</li>
+<li>数据阶段（DATA）：根据数据阶段的数据传输方向，控制传输又可以分为3种：控制读取（读取USB描述符），控制写入（配置USB设备），无数据控制</li>
+</ul>
+<p>其中控制读取：</p>
+<p>是将数据从设备读取到主机上，读取的数据是USB设备描述符，主机先发送一个IN令牌信息包，从机接收到后发送一个数据包，主机根据情况发送一个握手包，（ACK,NACK,STALL）</p>
+<p>控制写入：</p>
+<p>将数据从主机读取到设备上，数据为主机对USB的配置信息，主机先发送一个OUT令牌包，在发送数据包，设备最后发送握手包</p>
+<ul>
+<li>状态阶段（STATUS）：表示整个传输的过程已经完成，状态阶段的传输方向必须与数据阶段的方向相反</li>
+</ul>
+<p>每个阶段都由一个或多个事务组成</p>
+<h5 id="批量传输"><a href="#批量传输" class="headerlink" title="批量传输"></a>批量传输</h5><ul>
+<li>用于传输大量数据，保证数据不能出错，但对时间没有太大的要求</li>
+<li>批量传输是可靠的传输，需要握手包来表明传输的结果，若数据量比较大，则会采用批量传输来完成全部数据的传输，其中PID会以翻转的形式传输如DATA0-DATA1-DATA0-DATA1，以保证发送端与接收端同步</li>
+<li>USB允许连续3次以下的错误，如果连续发生错误后成功传输，则错误次数清零，当错误超过3次后，认为该端点功能错误，放弃传输</li>
+<li>一次批量传输是指一次或多次批量事务传输</li>
+<li>翻转同步：只有成功的事务传送才会使其翻转，否则会重新尝试本次传输</li>
+</ul>
+<h5 id="中断传输"><a href="#中断传输" class="headerlink" title="中断传输"></a>中断传输</h5><p>中断传输由IN事务和OUT事务组成</p>
+<p>除流程上不支持PING以外，其他过程与批量传输相同，中断传输优先级较高，仅次于同步传输</p>
+<p>中断传输总是用于对设备的查询，以确保是否有数据需要传输</p>
+<h5 id="中断传输-1"><a href="#中断传输-1" class="headerlink" title="中断传输"></a>中断传输</h5><p>由两种包组成</p>
+<ul>
+<li>token</li>
+<li>data</li>
+</ul>
+<p>不支持handshake和重传，因此他不可靠</p>
+<p>他在传输中有着最高的优先级</p>
+<p>同步传输适用于必须以固定速率抵达或在指定时刻抵达，可以容忍偶尔错误的数据上</p>
+<h4 id="USB2-0的电路设计及保护"><a href="#USB2-0的电路设计及保护" class="headerlink" title="USB2.0的电路设计及保护"></a>USB2.0的电路设计及保护</h4><ul>
+<li><p>L1为滤波磁珠，用于滤除电源上的干扰，磁珠阻抗选择范围为100Ω&#x2F;100MHz~1000Ω&#x2F;100MHz，典型值取600Ω&#x2F;100MHz，磁珠在选取时通流量应符合电路电流的要求；</p>
+</li>
+<li><p>L2为共模滤波电感，用于滤除差分信号上的共模干扰，磁珠阻抗选择范围为60Ω&#x2F;100MHz~120Ω&#x2F;100MHz，典型值取90Ω&#x2F;100MHz；</p>
+</li>
+<li><p>C1、C2为电源滤波电容，用于滤除电源上的干扰。C1、C2两个电容在取值上要相差100倍，典型值为10uF+0.1uF；小电容用于滤除电源上的高频干扰，大电容用于滤除电源线上的纹波干扰；</p>
+</li>
+<li><p>C3为接口地和数字地之间的跨接电容，典型值为1000pF&#x2F;2KV，容值也可根据实际测试情况进行调整；</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1298558/202010/1298558-20201020212713032-149768353.png"><img src="/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/1298558-20201020212713032-149768353.png" alt="img"></a></p>
+<p>其中D1,D2,D3为TVS，帮助快速泄放静电干扰</p>
+<h4 id="PCB-Layout规则"><a href="#PCB-Layout规则" class="headerlink" title="PCB Layout规则"></a>PCB Layout规则</h4><ul>
+<li>以差分式布线，参考面要连续，保证阻抗一致性</li>
+<li>VBUS走线需要能承受1A的电流，以防止过流事件的发生</li>
+<li>D+，D-走线必须等长，长度误差控制在5mil，并且不能走直角，需要钝角或圆弧走线，并且尽量不换层布线</li>
+<li>与其他CLK或差分信号线之间的间距应该在20mil</li>
+<li>保护器件与共模电感尽可能靠近接口</li>
+<li>避免在晶振，晶体，时钟信号发生器周围布线</li>
 </ul>
 
     </div>
@@ -502,7 +580,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2023/02/10/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" title="通信总线">http://example.com/2023/02/10/通信总线/</a>
+    <a href="http://example.com/2023/02/20/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" title="通信总线">http://example.com/2023/02/20/通信总线/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -551,12 +629,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/10/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" rel="prev" title="模电笔记">
-      <i class="fa fa-chevron-left"></i> 模电笔记
+    <a href="/2023/02/10/Html/" rel="prev" title="HTML入门">
+      <i class="fa fa-chevron-left"></i> HTML入门
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/02/10/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/" rel="next" title="电力电子技术笔记">
-      电力电子技术笔记 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/03/16/s/" rel="next" title="s">
+      s <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -616,7 +694,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">总线协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3"><span class="nav-number">1.1.</span> <span class="nav-text">串口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UART"><span class="nav-number">1.2.</span> <span class="nav-text">UART</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">帧格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I2C%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE%EF%BC%88%E5%85%88%E5%8F%91%E9%AB%98%E4%BD%8D%E5%90%8E%E5%8F%91%E4%BD%8E%E4%BD%8D%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">I2C总线协议（先发高位后发低位）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%B8%AD%E6%96%AD%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">对中断的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">主机发送数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E6%8E%A5%E5%8F%97%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">主机接受数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E7%9A%84%E4%BB%B2%E8%A3%81%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">主机的仲裁流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I2C%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5"><span class="nav-number">1.4.</span> <span class="nav-text">I2C时钟同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">相关硬件知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS232"><span class="nav-number">1.5.</span> <span class="nav-text">RS232</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS485"><span class="nav-number">1.6.</span> <span class="nav-text">RS485</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPI%E6%80%BB%E7%BA%BF%EF%BC%88%E4%B8%B2%E8%A1%8C%E5%A4%96%E8%AE%BE%E6%8E%A5%E5%8F%A3%EF%BC%89%E5%85%88%E5%8F%91%E9%AB%98%E4%BD%8D%E5%90%8E%E5%8F%91%E4%BD%8E%E4%BD%8D"><span class="nav-number">1.7.</span> <span class="nav-text">SPI总线（串行外设接口）先发高位后发低位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%81%E6%80%A7%E5%92%8C%E7%9B%B8%E4%BD%8D"><span class="nav-number">1.7.1.</span> <span class="nav-text">极性和相位</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB"><span class="nav-number">1.8.</span> <span class="nav-text">USB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#USB%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.8.1.</span> <span class="nav-text">USB拓扑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E4%BB%8E%E9%9B%86%E7%BA%BF%E5%99%A8%E4%B8%8A%E6%8E%A5%E5%85%A5%E6%97%B6"><span class="nav-number">1.8.2.</span> <span class="nav-text">当一个设备从集线器上接入时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E4%BB%8E%E9%9B%86%E7%BA%BF%E5%99%A8%E4%B8%8A%E7%A7%BB%E9%99%A4%E6%97%B6"><span class="nav-number">1.8.3.</span> <span class="nav-text">当一个设备从集线器上移除时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.8.4.</span> <span class="nav-text">通信协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.9.</span> <span class="nav-text">事务</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">总线协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3"><span class="nav-number">1.1.</span> <span class="nav-text">串口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UART"><span class="nav-number">1.2.</span> <span class="nav-text">UART</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">帧格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I2C%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE%EF%BC%88%E5%85%88%E5%8F%91%E9%AB%98%E4%BD%8D%E5%90%8E%E5%8F%91%E4%BD%8E%E4%BD%8D%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">I2C总线协议（先发高位后发低位）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%B8%AD%E6%96%AD%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">对中断的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">主机发送数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E6%8E%A5%E5%8F%97%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">主机接受数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E7%9A%84%E4%BB%B2%E8%A3%81%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">主机的仲裁流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I2C%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5"><span class="nav-number">1.4.</span> <span class="nav-text">I2C时钟同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">相关硬件知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS232"><span class="nav-number">1.5.</span> <span class="nav-text">RS232</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS485"><span class="nav-number">1.6.</span> <span class="nav-text">RS485</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPI%E6%80%BB%E7%BA%BF%EF%BC%88%E4%B8%B2%E8%A1%8C%E5%A4%96%E8%AE%BE%E6%8E%A5%E5%8F%A3%EF%BC%89%E5%85%88%E5%8F%91%E9%AB%98%E4%BD%8D%E5%90%8E%E5%8F%91%E4%BD%8E%E4%BD%8D"><span class="nav-number">1.7.</span> <span class="nav-text">SPI总线（串行外设接口）先发高位后发低位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%81%E6%80%A7%E5%92%8C%E7%9B%B8%E4%BD%8D"><span class="nav-number">1.7.1.</span> <span class="nav-text">极性和相位</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB"><span class="nav-number">1.8.</span> <span class="nav-text">USB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#USB%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.8.1.</span> <span class="nav-text">USB拓扑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E4%BB%8E%E9%9B%86%E7%BA%BF%E5%99%A8%E4%B8%8A%E6%8E%A5%E5%85%A5%E6%97%B6"><span class="nav-number">1.8.2.</span> <span class="nav-text">当一个设备从集线器上接入时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E4%BB%8E%E9%9B%86%E7%BA%BF%E5%99%A8%E4%B8%8A%E7%A7%BB%E9%99%A4%E6%97%B6"><span class="nav-number">1.8.3.</span> <span class="nav-text">当一个设备从集线器上移除时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.8.4.</span> <span class="nav-text">通信协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.8.5.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E4%BC%A0%E8%BE%93"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">控制传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E4%BC%A0%E8%BE%93"><span class="nav-number">1.8.5.2.</span> <span class="nav-text">批量传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E4%BC%A0%E8%BE%93"><span class="nav-number">1.8.5.3.</span> <span class="nav-text">中断传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E4%BC%A0%E8%BE%93-1"><span class="nav-number">1.8.5.4.</span> <span class="nav-text">中断传输</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#USB2-0%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.8.6.</span> <span class="nav-text">USB2.0的电路设计及保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCB-Layout%E8%A7%84%E5%88%99"><span class="nav-number">1.8.7.</span> <span class="nav-text">PCB Layout规则</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -722,7 +800,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共50.9k字</span>
+  <span class="post-count">博客全站共54.4k字</span>
 </div>
         
 
