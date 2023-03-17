@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="总线协议并行：同一时间总线能发若干个位数的数据 串行：同一时间总线只发一位的数据，并一直维持这种传送方式 单工：A只能给B传送数据 双工：A可以给B传送数据，也可以从B接受数据 半双工：接收数据，传送数据不能同时进行 全双工：接收，传输可以同时进行 波特率：串口通信速度(BPS)，每秒钟能传送位数的个数 串口串行通信接口(COM)：一次最多可以发送一个字节，发送多个字节必须先发送一个字节停止，再起">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通信总线">
+<meta property="og:url" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/index.html">
+<meta property="og:site_name" content="小金的学习日志">
+<meta property="og:description" content="总线协议并行：同一时间总线能发若干个位数的数据 串行：同一时间总线只发一位的数据，并一直维持这种传送方式 单工：A只能给B传送数据 双工：A可以给B传送数据，也可以从B接受数据 半双工：接收数据，传送数据不能同时进行 全双工：接收，传输可以同时进行 波特率：串口通信速度(BPS)，每秒钟能传送位数的个数 串口串行通信接口(COM)：一次最多可以发送一个字节，发送多个字节必须先发送一个字节停止，再起">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226144803956.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013807179.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013824207.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316204559533.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316202917950.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228173759767.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228175742798.png">
+<meta property="og:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/1298558-20201020212713032-149768353.png">
+<meta property="article:published_time" content="2023-03-05T14:07:08.000Z">
+<meta property="article:modified_time" content="2023-03-17T10:09:38.511Z">
+<meta property="article:author" content="Kim-Donghyun">
+<meta property="article:tag" content="I2C、SPI、UART、RS232、RS485、USB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226144803956.png">
+
+<link rel="canonical" href="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>通信总线 | 小金的学习日志</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="小金的学习日志" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a target="_blank" rel="noopener" href="https://github.com/Martin01Kim" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小金的学习日志</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kim-Donghyun">
+      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小金的学习日志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          通信总线
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-05 22:07:08" itemprop="dateCreated datePublished" datetime="2023-03-05T22:07:08+08:00">2023-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-17 18:09:38" itemprop="dateModified" datetime="2023-03-17T18:09:38+08:00">2023-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" itemprop="url" rel="index"><span itemprop="name">通信总线</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="总线协议"><a href="#总线协议" class="headerlink" title="总线协议"></a>总线协议</h2><p>并行：同一时间总线能发若干个位数的数据</p>
+<p>串行：同一时间总线只发一位的数据，并一直维持这种传送方式</p>
+<p>单工：A只能给B传送数据</p>
+<p>双工：A可以给B传送数据，也可以从B接受数据</p>
+<p>半双工：接收数据，传送数据不能同时进行</p>
+<p>全双工：接收，传输可以同时进行</p>
+<p><strong>波特率：串口通信速度(BPS)，每秒钟能传送位数的个数</strong></p>
+<h3 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h3><p>串行通信接口(COM)：一次最多可以发送一个字节，发送多个字节必须先发送一个字节停止，再起始发送另一个字节</p>
+<p>其中有公头和母头之分</p>
+<p><strong>串行：计算机总线或其他数据传送线上，一次只传送一位元数据，并连续进行以上传送方式，防止累计误差的出现</strong></p>
+<p><strong>并行：计算机总线或其他数据传送线上，一次传送多位元数据，速度比串行快</strong></p>
+<p>异步通信：发送数据方与接受数据方的时钟不一样</p>
+<p>同步通信：发送与接受方时钟相同</p>
+<h3 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h3><p>通用异步收发器，串行，异步通用总线，有两条线，一个对外发送，一个对外接受，属于全双工通信线路</p>
+<p><strong>接收器与发送器波特率误差不能超过百分之10</strong></p>
+<h4 id="帧格式"><a href="#帧格式" class="headerlink" title="帧格式"></a>帧格式</h4><p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226144803956.png" alt="image-20230226144803956"></p>
+<p><strong>起始位，数据位，校验位（可有可无），停止位（1或2位）</strong></p>
+<p>检验过程：检测数据位中1的个数，1若为偶数个则校验位为1，只能检查是否有错误，不能修正错误</p>
+<p>校验位加数据位中1的个数为偶数为偶校验，否则为奇校验</p>
+<ul>
+<li>TXD：发送数据口</li>
+<li>RXD：接收数据口</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>电气接口不统一，不同器件的高低电平标准不一样</strong></li>
+<li><strong>抗干扰能力差</strong></li>
+<li><strong>数据传输距离短</strong></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="I2C总线协议（先发高位后发低位）"><a href="#I2C总线协议（先发高位后发低位）" class="headerlink" title="I2C总线协议（先发高位后发低位）"></a>I2C总线协议（先发高位后发低位）</h3><p>由两条线构成，一个SCK（串行时钟线），一个SDA（串行数据线）</p>
+<p>特点：</p>
+<ul>
+<li>SDA传输高位先传，一次传8BIT（一个字节），传送一个字节之后接一个ACK&#x2F;NACK位</li>
+<li>支持多主控，但同一时间只有一个主控</li>
+<li>连接到总线的所有从机都有一个独立的7位地址，用来主机识别从机</li>
+<li>总线空闲时需要加上拉电阻使其变为高电平</li>
+<li>SDA与SCK是线与关系，有一个为低电平即都为低电平</li>
+<li>多个主机同时使用总线时，需要仲裁的方式觉得哪个主机使用</li>
+</ul>
+<p>起始信号：</p>
+<ul>
+<li>SCL为高时，SDA从1变为0</li>
+</ul>
+<p>结束信号</p>
+<ul>
+<li>SCL为高时，SDA从变一</li>
+</ul>
+<p><strong>只有当SCL为0时，才会允许主机将要发送的数据写入SDA，SCL为1时，接收器读取数据</strong></p>
+<p><strong>传输完8位数据后，第九位为ACK&#x2F;NACK，代表应答信号和非应答信号</strong></p>
+<p>等数据接收完毕后，主机发送向从机发送一个NACK信号，告诉从机不要再发送信号了，之后再发送一个停止信号，释放总线</p>
+<h4 id="对中断的处理"><a href="#对中断的处理" class="headerlink" title="对中断的处理"></a>对中断的处理</h4><p>从机对中断的处理为，将SCL总线拉低，使其进入等待状态，等准备完毕后，再将SCL拉高，使主机就绪</p>
+<h4 id="主机发送数据流程"><a href="#主机发送数据流程" class="headerlink" title="主机发送数据流程"></a>主机发送数据流程</h4><ol>
+<li>主机检测到主线空闲（SCK,SAD都为高电平），发送一个起始信号</li>
+<li>主机发送一个8位数据（7位地址+R&#x2F;W读写位），<strong>R&#x2F;W位0时位写，R&#x2F;W为1时为读</strong></li>
+<li>从机收到命令后，发送一个ACK（<strong>对SDA拉低代表应答</strong>）</li>
+<li>主机接受之后发送第一个字节数据</li>
+<li>从机受到后继续发送一个ACK</li>
+<li>直到主机发送到最后一个字节时，并且受到从机ACK后，发送一个停止信号，结束通信</li>
+</ol>
+<h4 id="主机接受数据流程"><a href="#主机接受数据流程" class="headerlink" title="主机接受数据流程"></a>主机接受数据流程</h4><ol>
+<li>主机开始发送信号，发送命令字节（7位地址+R&#x2F;W位&#x3D;1）</li>
+<li>从机接收信号，发送一个字节数据</li>
+<li>主机收到一个字节数据，发送一个ack</li>
+<li>直到接收到最后一个数据，主机向从机发一个NACK（表示上一个字节接收完毕，下一个字节不要再发了），从机接收到信号之后停止传送数据</li>
+<li>主机再发送一个停止信号，结束信号，退出总线</li>
+</ol>
+<h4 id="主机的仲裁流程"><a href="#主机的仲裁流程" class="headerlink" title="主机的仲裁流程"></a>主机的仲裁流程</h4><p>主机通过检测自身的SDA信号是否与总线SDA信号相同，来判断是否发生总线冲突，第一个使SDA从高电平跳至低电平的主机获得总线控</p>
+<p>制权</p>
+<h3 id="I2C时钟同步"><a href="#I2C时钟同步" class="headerlink" title="I2C时钟同步"></a>I2C时钟同步</h3><p><strong>SCL线的低电平周期与线路器件中低电平最长的周期相等</strong></p>
+<p><strong>SCL线的高电平由高电平时钟周期最短的器件保持</strong></p>
+<h4 id="相关硬件知识"><a href="#相关硬件知识" class="headerlink" title="相关硬件知识"></a>相关硬件知识</h4><ul>
+<li>I2C总线相当于OD(开漏)，因为输出为高阻态，所以要加上拉电平将其拉到高电平确定输出</li>
+<li>上拉电阻的最小值由上拉源确定，上拉电阻的最大值由总线电容决定</li>
+</ul>
+<p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013807179.png" alt="image-20230226013807179"></p>
+<p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230226013824207.png" alt="image-20230226013824207"></p>
+<ul>
+<li>I2C总线串联保护电阻，抑制干扰脉冲进入电路，选值一般都很小</li>
+</ul>
+<h3 id="RS232"><a href="#RS232" class="headerlink" title="RS232"></a>RS232</h3><p>再UART协议的基准上，对其做了相应的电器标准</p>
+<ul>
+<li>规定采用标准的连接器，对每个引脚的作用，以及信号的电平做了规定</li>
+</ul>
+<p>规定的逻辑电平</p>
+<ul>
+<li>高电平：-5V ~  -15V为逻辑电平1</li>
+<li>低电平:   5V  ~  15V为逻辑电平0</li>
+</ul>
+<p>缺点”</p>
+<ul>
+<li>接口的信号电平值比较高，容易烧毁芯片，又因为与TTL电平不兼容，所以要接232电平转换芯片</li>
+<li>通信速度比较低，无法应用在高速场合</li>
+<li>易产生共模干扰，抗噪声比较弱</li>
+<li>传输距离比较短</li>
+</ul>
+<p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316204559533.png" alt="image-20230316204559533"></p>
+<h3 id="RS485"><a href="#RS485" class="headerlink" title="RS485"></a>RS485</h3><p><strong>半双工的工作方式</strong></p>
+<p>类似RS232，也是一个电气标准，为了<strong>解决远距离条件，噪声大条件下信号的传输能力</strong>，该标准<strong>允许连接多个收发器</strong></p>
+<p>信号：</p>
+<p><strong>差分信号</strong>：通过两根线上电压去做相减，可以抑制共模干扰</p>
+<p>规定采用<strong>差分信号</strong>进行数据传输，两线间的电压差达到**+2V到+6V<strong>时为逻辑电平1，两线间电压差再</strong>-2V到-6V**之间为逻辑电平0</p>
+<p><strong>发送时同样需要将TTL转485，接收时要485转TTL</strong></p>
+<p>优点：</p>
+<ul>
+<li>接口信号值电压较低</li>
+<li>可以抑制共模干扰</li>
+<li>可以组成网络</li>
+<li>通信速度快</li>
+</ul>
+<h3 id="SPI总线（串行外设接口）先发高位后发低位"><a href="#SPI总线（串行外设接口）先发高位后发低位" class="headerlink" title="SPI总线（串行外设接口）先发高位后发低位"></a>SPI总线（串行外设接口）先发高位后发低位</h3><p>高速的，全双工的，同步的串行通信总线</p>
+<p>一共有4根线：</p>
+<ul>
+<li>MISO(主机输入从机输出)</li>
+<li>MOSI（主机输出从机输入）</li>
+<li>SCLK（时钟信号）</li>
+<li>CS（片选信号）：主机发送使能信号确定响应的从机，可以用多条线，用来响应不同的从机，对应电平由从机确定，发送完使能信号之后，其他不响应的从机仍要发一个使能信号，如果响应高电平，就发送低电平</li>
+</ul>
+<p><strong>与I2C区别，发送完一个字节的数据之后不需要应答信号即可发送下一个信号，发送时如果上升沿发送数据，下降沿就接收数据，没有起始信号，停止信号，应答信号</strong></p>
+<h4 id="极性和相位"><a href="#极性和相位" class="headerlink" title="极性和相位"></a>极性和相位</h4><p>SPI总线有四种不同的工作方式取决于极性(CPOL)和相位(CPHA)</p>
+<p>CPOL表示SCLK空闲时的状态</p>
+<ul>
+<li>CPOL&#x3D;0时表示SCLK空闲时为低电平</li>
+<li>CPOL&#x3D;1时表示SCLK空闲时为高电平</li>
+</ul>
+<p>CPHA表示接收信号的时机</p>
+<ul>
+<li>CPHA&#x3D;0时表示第一个时钟沿接收信号</li>
+<li>CPHA&#x3D;1表示第二个时钟沿接收信号</li>
+</ul>
+<p>与I2C的相同：</p>
+<ul>
+<li>均采用同步，串行方式</li>
+<li>均采用TTL电平</li>
+<li>均采用主从方式工作</li>
+</ul>
+<p>与I2C的区别：</p>
+<ul>
+<li>I2C通过从机地址确定工作的从机，SPI通过发送使能信号唤醒从机</li>
+<li>I2C时钟的极性和相位是固定的，SPI是可调的</li>
+<li>I2C有应答机制，SPI无应答机制</li>
+<li>I2C是半双工，spi是全双工</li>
+</ul>
+<h3 id="USB"><a href="#USB" class="headerlink" title="USB"></a>USB</h3><p><strong>一共有4条线，分别为：Vbus，D+，D-，GND</strong></p>
+<p><strong>反向不归零编码(NRZI):用信号电平翻转代表0，信号电平保持代表1，这种编码方式既可以保证数据传输的完整性，也不需要传输过程中包含独立的时钟,但是信号电平长时间保持时，会导致接收器丢失同步信号，所以在信号电平保持最长6个周期后，会将信号电平强制反转，保证时钟周期的同步，而接收器会扔掉自动翻转的0电平，不会对数据传输产生干扰</strong></p>
+<p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230316202917950.png" alt="image-20230316202917950"></p>
+<p>USB只允许有一个主机。可分为3个不同的模块</p>
+<ul>
+<li>客户软件：负责USB设备的通信，以实现其功能，不能直接访问USB设备，必须通过系统软件与总线接口进行访问，包括USB设备驱动程序和界面应用程序</li>
+<li>USB系统软件：负责USB逻辑设备进行配置通信，同时管理客户软件启动的数据传输，包括USB总线驱动程序和USB主控制器驱动程序</li>
+<li>USB总线接口：包括主控制器和根集线器，主控制器负责完成数据的传输，根集线器负责给usb系统提供一个或多个连接点</li>
+</ul>
+<p>USB设备主要有3个不同模块</p>
+<ul>
+<li>USB总线接口：是USB设备中的串行接口引擎</li>
+<li>USB逻辑设备：被USB系统软件看成是一个端点的集合</li>
+<li>功能单元：被客户软件看成是一个接口的集合</li>
+</ul>
+<p>他包括</p>
+<ul>
+<li>配置描述符</li>
+<li>设备描述符</li>
+<li>接口描述符</li>
+<li>端点描述符</li>
+<li>字符串描述符</li>
+</ul>
+<p><strong>设备：一个USB设备有一个或多个配置组成，但一定只有一个设备描述符</strong></p>
+<p><strong>配置：USB设备的每一个配置都必须包含一个配置描述符</strong></p>
+<p><strong>接口：一个配置可以由一个或多个接口组成，每一个接口必须由接口描述符组成</strong></p>
+<p><strong>端点：是用于主机在各个USB设备中进行数据传输（0号端点可以支持输入或输出，但一般用于控制传输)</strong></p>
+<p><strong>管道：与端点一一对应，一个设备有多少端点，通信时就可以用多少管道，通信时相互独立，传输方式由端点决定</strong></p>
+<h4 id="USB拓扑结构"><a href="#USB拓扑结构" class="headerlink" title="USB拓扑结构"></a>USB拓扑结构</h4><p>USB主要有主机，集线器构成</p>
+<p>拓扑结构中有3种元素</p>
+<ul>
+<li>主机</li>
+<li>HUB（集线器）</li>
+<li>设备</li>
+</ul>
+<p>最顶层为主机，连接到下一层的集线器，下一层的集线器再连接到更下一层的集线器与设备，如下图所示</p>
+<p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228173759767.png" alt="image-20230228173759767"></p>
+<h4 id="当一个设备从集线器上接入时"><a href="#当一个设备从集线器上接入时" class="headerlink" title="当一个设备从集线器上接入时"></a>当一个设备从集线器上接入时</h4><ul>
+<li>主机会检测到集线器状态的改变，发出一个命令使该端口有效并进行设置</li>
+<li>设备接收到命令，进行响应，主机收到设备的响应，了解该设备用哪种驱动程序，并分配给其一个唯一的地址</li>
+<li>主机发送内部设置请求</li>
+</ul>
+<h4 id="当一个设备从集线器上移除时"><a href="#当一个设备从集线器上移除时" class="headerlink" title="当一个设备从集线器上移除时"></a>当一个设备从集线器上移除时</h4><p>主线将其从可用资源列表上删除</p>
+<h4 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h4><p>由包组成，一个包中由：</p>
+<ul>
+<li>同步字段：使USB设备与总线的包传输速率同步，固定为00000001</li>
+<li>PID字段：用来表示数据封包的类型（令牌，数据，握手，特殊）</li>
+</ul>
+<p><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/image-20230228175742798.png" alt="image-20230228175742798"></p>
+<ul>
+<li>数据字段：用来携带传输的数据，内容长度根据标识符，传输类型的不同而不同，先传低位，后传高位</li>
+</ul>
+<ol>
+<li>分为ADDR数据域：由7位组成，用来寻址</li>
+<li>ENDP数据域：由4位组成，寻址32个端点，端点1作为中断传输模式</li>
+<li>帧序列号：当PID为SOF时，必须时一个11位的帧序列号，由主机产生，每产生一个加一，最大为0x7FF，最大时归0</li>
+<li>数据：</li>
+</ol>
+<ul>
+<li>CRC字段：循环冗余码，重要的信息由CRC16组成，其余的信息由CRC5组成</li>
+<li>包结尾字段</li>
+</ul>
+<p>数据包的格式：</p>
+<ul>
+<li><p>令牌包：定义了传输数据的类型，是事务处理的第一个阶段，由IN,OUT,SETUP三个令牌包，分别为主机输入，主机输出作用，</p>
+<p>与其他区别，除了PID,SYNC以及CRC5以外，由ENDP，ADDR两个字段</p>
+</li>
+<li><p>数据包：必须以8个字节为单位</p>
+</li>
+<li><p>握手包：仅包含一个数据域：一个SYNC字段，两个PID字段</p>
+</li>
+</ul>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p><strong>USB上一次信息接收或发送的过程称为事务</strong></p>
+<p>类型包括：</p>
+<ul>
+<li>IN输入事务处理</li>
+<li>OUT输出事务处理</li>
+<li>SETUP设置事务处理</li>
+</ul>
+<p>输入事务时：</p>
+<ul>
+<li>主机发送一个令牌信息包</li>
+<li>从机接收到后，如果设备正常运行，则发送一个数据包，若设备忙或设备出错，则发送一个握手包（NACK或STALL）</li>
+<li>主机接收到后则回应一个握手包（ACK）</li>
+</ul>
+<p>输出事务时</p>
+<ul>
+<li>主机发送一个令牌信息包</li>
+<li>紧接着主机再发送一个数据包</li>
+<li>从机接收到后发送一个握手包（ACK），若设备忙或出错时则发送NACK或STALL握手包</li>
+</ul>
+<p>设置事务时与输出事务过程相同</p>
+<p><strong>再USB当中，有4种传输类型</strong></p>
+<ul>
+<li>控制传输</li>
+<li>中断传输</li>
+<li>批量传输</li>
+<li>同步传输</li>
+</ul>
+<h5 id="控制传输"><a href="#控制传输" class="headerlink" title="控制传输"></a>控制传输</h5><p>控制传输有2到3个阶段组成</p>
+<ul>
+<li>建立阶段（Setup）：主机从USB获取设备配置信息，并设置设备的配置值，数据交换包含了令牌包，数据包，握手包，它的作用是执行了一个设置的数据交换，并定义此次控制传输的内容</li>
+<li>数据阶段（DATA）：根据数据阶段的数据传输方向，控制传输又可以分为3种：控制读取（读取USB描述符），控制写入（配置USB设备），无数据控制</li>
+</ul>
+<p>其中控制读取：</p>
+<p>是将数据从设备读取到主机上，读取的数据是USB设备描述符，主机先发送一个IN令牌信息包，从机接收到后发送一个数据包，主机根据情况发送一个握手包，（ACK,NACK,STALL）</p>
+<p>控制写入：</p>
+<p>将数据从主机读取到设备上，数据为主机对USB的配置信息，主机先发送一个OUT令牌包，在发送数据包，设备最后发送握手包</p>
+<ul>
+<li>状态阶段（STATUS）：表示整个传输的过程已经完成，状态阶段的传输方向必须与数据阶段的方向相反</li>
+</ul>
+<p>每个阶段都由一个或多个事务组成</p>
+<h5 id="批量传输"><a href="#批量传输" class="headerlink" title="批量传输"></a>批量传输</h5><ul>
+<li>用于传输大量数据，保证数据不能出错，但对时间没有太大的要求</li>
+<li>批量传输是可靠的传输，需要握手包来表明传输的结果，若数据量比较大，则会采用批量传输来完成全部数据的传输，其中PID会以翻转的形式传输如DATA0-DATA1-DATA0-DATA1，以保证发送端与接收端同步</li>
+<li>USB允许连续3次以下的错误，如果连续发生错误后成功传输，则错误次数清零，当错误超过3次后，认为该端点功能错误，放弃传输</li>
+<li>一次批量传输是指一次或多次批量事务传输</li>
+<li>翻转同步：只有成功的事务传送才会使其翻转，否则会重新尝试本次传输</li>
+</ul>
+<h5 id="中断传输"><a href="#中断传输" class="headerlink" title="中断传输"></a>中断传输</h5><p>中断传输由IN事务和OUT事务组成</p>
+<p>除流程上不支持PING以外，其他过程与批量传输相同，中断传输优先级较高，仅次于同步传输</p>
+<p>中断传输总是用于对设备的查询，以确保是否有数据需要传输</p>
+<h5 id="中断传输-1"><a href="#中断传输-1" class="headerlink" title="中断传输"></a>中断传输</h5><p>由两种包组成</p>
+<ul>
+<li>token</li>
+<li>data</li>
+</ul>
+<p>不支持handshake和重传，因此他不可靠</p>
+<p>他在传输中有着最高的优先级</p>
+<p>同步传输适用于必须以固定速率抵达或在指定时刻抵达，可以容忍偶尔错误的数据上</p>
+<h4 id="USB2-0的电路设计及保护"><a href="#USB2-0的电路设计及保护" class="headerlink" title="USB2.0的电路设计及保护"></a>USB2.0的电路设计及保护</h4><ul>
+<li><p>L1为滤波磁珠，用于滤除电源上的干扰，磁珠阻抗选择范围为100Ω&#x2F;100MHz~1000Ω&#x2F;100MHz，典型值取600Ω&#x2F;100MHz，磁珠在选取时通流量应符合电路电流的要求；</p>
+</li>
+<li><p>L2为共模滤波电感，用于滤除差分信号上的共模干扰，磁珠阻抗选择范围为60Ω&#x2F;100MHz~120Ω&#x2F;100MHz，典型值取90Ω&#x2F;100MHz；</p>
+</li>
+<li><p>C1、C2为电源滤波电容，用于滤除电源上的干扰。C1、C2两个电容在取值上要相差100倍，典型值为10uF+0.1uF；小电容用于滤除电源上的高频干扰，大电容用于滤除电源线上的纹波干扰；</p>
+</li>
+<li><p>C3为接口地和数字地之间的跨接电容，典型值为1000pF&#x2F;2KV，容值也可根据实际测试情况进行调整；</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1298558/202010/1298558-20201020212713032-149768353.png"><img src="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/1298558-20201020212713032-149768353.png" alt="img"></a></p>
+<p>其中D1,D2,D3为TVS，帮助快速泄放静电干扰</p>
+<h4 id="PCB-Layout规则"><a href="#PCB-Layout规则" class="headerlink" title="PCB Layout规则"></a>PCB Layout规则</h4><ul>
+<li>以差分式布线，参考面要连续，保证阻抗一致性</li>
+<li>VBUS走线需要能承受1A的电流，以防止过流事件的发生</li>
+<li>D+，D-走线必须等长，长度误差控制在5mil，并且不能走直角，需要钝角或圆弧走线，并且尽量不换层布线</li>
+<li>与其他CLK或差分信号线之间的间距应该在20mil</li>
+<li>保护器件与共模电感尽可能靠近接口</li>
+<li>避免在晶振，晶体，时钟信号发生器周围布线</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+     
+    
+   <div>
+     <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------本文结束<i class="fa fa-paw"></i>------------</div>
+    
+</div>
+   </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Kim-Donghyun
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" title="通信总线">http://example.com/2023/03/05/通信总线/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">微信</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag"># I2C、SPI、UART、RS232、RS485、USB</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/" rel="prev" title="电力电子技术笔记">
+      <i class="fa fa-chevron-left"></i> 电力电子技术笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">总线协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E5%8F%A3"><span class="nav-number">1.1.</span> <span class="nav-text">串口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UART"><span class="nav-number">1.2.</span> <span class="nav-text">UART</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">帧格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I2C%E6%80%BB%E7%BA%BF%E5%8D%8F%E8%AE%AE%EF%BC%88%E5%85%88%E5%8F%91%E9%AB%98%E4%BD%8D%E5%90%8E%E5%8F%91%E4%BD%8E%E4%BD%8D%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">I2C总线协议（先发高位后发低位）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%B8%AD%E6%96%AD%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">对中断的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">主机发送数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E6%8E%A5%E5%8F%97%E6%95%B0%E6%8D%AE%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">主机接受数据流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E7%9A%84%E4%BB%B2%E8%A3%81%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">主机的仲裁流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I2C%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5"><span class="nav-number">1.4.</span> <span class="nav-text">I2C时钟同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">相关硬件知识</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS232"><span class="nav-number">1.5.</span> <span class="nav-text">RS232</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RS485"><span class="nav-number">1.6.</span> <span class="nav-text">RS485</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPI%E6%80%BB%E7%BA%BF%EF%BC%88%E4%B8%B2%E8%A1%8C%E5%A4%96%E8%AE%BE%E6%8E%A5%E5%8F%A3%EF%BC%89%E5%85%88%E5%8F%91%E9%AB%98%E4%BD%8D%E5%90%8E%E5%8F%91%E4%BD%8E%E4%BD%8D"><span class="nav-number">1.7.</span> <span class="nav-text">SPI总线（串行外设接口）先发高位后发低位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%81%E6%80%A7%E5%92%8C%E7%9B%B8%E4%BD%8D"><span class="nav-number">1.7.1.</span> <span class="nav-text">极性和相位</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB"><span class="nav-number">1.8.</span> <span class="nav-text">USB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#USB%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.8.1.</span> <span class="nav-text">USB拓扑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E4%BB%8E%E9%9B%86%E7%BA%BF%E5%99%A8%E4%B8%8A%E6%8E%A5%E5%85%A5%E6%97%B6"><span class="nav-number">1.8.2.</span> <span class="nav-text">当一个设备从集线器上接入时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AE%BE%E5%A4%87%E4%BB%8E%E9%9B%86%E7%BA%BF%E5%99%A8%E4%B8%8A%E7%A7%BB%E9%99%A4%E6%97%B6"><span class="nav-number">1.8.3.</span> <span class="nav-text">当一个设备从集线器上移除时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.8.4.</span> <span class="nav-text">通信协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.8.5.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E4%BC%A0%E8%BE%93"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">控制传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E4%BC%A0%E8%BE%93"><span class="nav-number">1.8.5.2.</span> <span class="nav-text">批量传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E4%BC%A0%E8%BE%93"><span class="nav-number">1.8.5.3.</span> <span class="nav-text">中断传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E4%BC%A0%E8%BE%93-1"><span class="nav-number">1.8.5.4.</span> <span class="nav-text">中断传输</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#USB2-0%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.8.6.</span> <span class="nav-text">USB2.0的电路设计及保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCB-Layout%E8%A7%84%E5%88%99"><span class="nav-number">1.8.7.</span> <span class="nav-text">PCB Layout规则</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kim-Donghyun"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Kim-Donghyun</p>
+  <div class="site-description" itemprop="description">希望现在的自己配得上所期望的生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Martin01Kim" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Martin01Kim" rel="noopener" target="_blank"><i class="fa fa-cloud fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2302539593@qq.com" title="E-Mail → 2302539593@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      自用网站
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/weixin_44407238/article/details/112799416" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44407238&#x2F;article&#x2F;details&#x2F;112799416" rel="noopener" target="_blank">硬件知识</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/31880831/?spm_id_from=333.999.0.0" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;31880831&#x2F;?spm_id_from&#x3D;333.999.0.0" rel="noopener" target="_blank">高质量网课</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="250" height="250" id="resCanvas" style="width=100%">
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2023-01 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kim-Donghyun</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+ 
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共55.2k字</span>
+</div>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/clicklove.js"></script>
