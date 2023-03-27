@@ -45,6 +45,8 @@
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316174759474.png">
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175742649.png">
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175943922.png">
+<meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230324021734672.png">
+<meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230324021927789.png">
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316193557967.png">
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316184204734.png">
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316184334671.png">
@@ -56,7 +58,7 @@
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316231608804.png">
 <meta property="og:image" content="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316233239960.png">
 <meta property="article:published_time" content="2023-03-04T14:07:08.000Z">
-<meta property="article:modified_time" content="2023-03-17T10:09:08.717Z">
+<meta property="article:modified_time" content="2023-03-24T04:37:30.154Z">
 <meta property="article:author" content="Kim-Donghyun">
 <meta property="article:tag" content="Buck,Boost,Ldo">
 <meta name="twitter:card" content="summary">
@@ -256,7 +258,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:09:08" itemprop="dateModified" datetime="2023-03-17T18:09:08+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-24 12:37:30" itemprop="dateModified" datetime="2023-03-24T12:37:30+08:00">2023-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -302,6 +304,10 @@
 <li>成本低，DC-DC成本较高，因为有电阻，电容，电感等器件</li>
 </ul>
 <p>注意78XX，79XX是线性稳压器件，并不是低压差线性稳压器（LDO），其要求输出电压比输入电压高2-3伏</p>
+<p>线性稳压器使用时关于电容的选择：</p>
+<ul>
+<li>输入电容C1应该比输出电容C2大，好处是当输入为0时，由于C1的容量大于C2的容量，这样就避免了C2对稳压器进行反向充电，对稳压器有一定的保护作用</li>
+</ul>
 <h2 id="整流电路"><a href="#整流电路" class="headerlink" title="整流电路"></a>整流电路</h2><p>将交流电整成直流电</p>
 <ul>
 <li>按交流输入相数分为：单相电路和多相电路</li>
@@ -369,6 +375,12 @@
 <p>输出功率与输入功率相同，通过控制PWM占空比，即通过控制开关管V的关断，即可控制输出的平均电压</p>
 <p>工作流程：</p>
 <p>MOS管开启，电源电压通过电感流入负载，并将电能存储在电感，电容中，当MOS管关断时，存储在电感，电容中的电能释放，流出电压通过负载，续流二极管流回电感，因为电路中电压很小，所以发热功率U*I很小，这也是为什么开关电源效率高的原因</p>
+<p>BUCK电流中电容的作用：</p>
+<ul>
+<li>主要起到滤波的作用</li>
+<li>辅助电感给电阻提供能量</li>
+<li></li>
+</ul>
 <p><strong>减少输出电压脉动的方法</strong></p>
 <ul>
 <li><strong>提高开关频率</strong></li>
@@ -381,6 +393,17 @@
 </ul>
 <p>缺点：输出噪声较大</p>
 <p>优点：效率高</p>
+<p>BUCK型电源芯片一般包含如下引脚：</p>
+<ul>
+<li>电源输入引脚VIN</li>
+<li>GND</li>
+<li>EN</li>
+<li>SW：电感节点</li>
+<li>FB：基准电压，一般通过分压电阻调节输出电压</li>
+<li>BOOT：如果看到芯片中含有BOOT引脚，一般内部为N-MOS管，需要外接自举电容、</li>
+</ul>
+<p>自举电容原理：</p>
+<p>同步整流的BUCK芯片，两个管无法同时导通，上方的MOS管需要加一个自举电容放电，使上方的MOS管导通，一般使用与占空比较小的电路中</p>
 <p><strong>BUCK电路相关计算，伏秒法则</strong></p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316230030306.png" alt="image-20230316230030306"></p>
 <h4 id="隔离型BUCK变换器（单端正激变换器）"><a href="#隔离型BUCK变换器（单端正激变换器）" class="headerlink" title="隔离型BUCK变换器（单端正激变换器）"></a>隔离型BUCK变换器（单端正激变换器）</h4><p>在传统的BUCK变换器，中间加入了个隔离变压器</p>
@@ -393,7 +416,13 @@
 <p>绿色方框内为传统BUCK电路的开关，右侧为正常电路模型</p>
 <p><strong>单端表示变压器磁通仅在单方面变化</strong></p>
 <p><strong>正激表示电管开关管开启时将能量直接传送给负载</strong></p>
-<h4 id="升压斩波型DC-DC电路（BOOST）"><a href="#升压斩波型DC-DC电路（BOOST）" class="headerlink" title="升压斩波型DC-DC电路（BOOST）"></a>升压斩波型DC-DC电路（BOOST）</h4><p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316170011700.png" alt="image-20230316170011700"></p>
+<h4 id="升压斩波型DC-DC电路（BOOST）"><a href="#升压斩波型DC-DC电路（BOOST）" class="headerlink" title="升压斩波型DC-DC电路（BOOST）"></a>升压斩波型DC-DC电路（BOOST）</h4><p>三种工作方式：</p>
+<ul>
+<li>连续工作方式</li>
+<li>临界连续工作方式</li>
+<li>非连续导通方式</li>
+</ul>
+<p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316170011700.png" alt="image-20230316170011700"></p>
 <p>工作流程：</p>
 <ul>
 <li>开关导通时，输入电压流向电感，电感电流线性增加，电感储能增加，电源向电感转移电能，此时负载通过电容C供电</li>
@@ -407,12 +436,18 @@
 <li>电感中存储电能的泵升作用使输出电压升高</li>
 <li>开关导通时，电容维持负载两端电压</li>
 </ul>
+<p><strong>T导通时，电感电流不能突变，此时电感两端电压左正右负，T截止时，电感电流不能突变，此时电感两端电压右正左负，相当于两个电池串联，实现电压的升高</strong></p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175742649.png" alt="image-20230316175742649"></p>
 <p><strong>显然，要降低电压纹波，可以增加开关频率，电容量，来降低电压纹波</strong></p>
 <p><strong>电感临界连续电流：</strong></p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175943922.png" alt="image-20230316175943922"></p>
 <p>缺点：效率不高</p>
 <p>优点：得到的电流较小</p>
+<h5 id="输入输出滤波电容容值计算"><a href="#输入输出滤波电容容值计算" class="headerlink" title="输入输出滤波电容容值计算"></a>输入输出滤波电容容值计算</h5><p>大体思路：先根据电容公式求纹波电压，带入一系列公式后，如占空比，功率欧姆定律，纹波率公式得到所需要纹波率，根据题中给出的纹波率范围，求出电容值</p>
+<p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230324021734672.png" alt="image-20230324021734672"></p>
+<p><strong>输入滤波电容容值计算：</strong></p>
+<p>在CCM模式下，假定电感的纹波电流全部被输入电容所吸收</p>
+<p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230324021927789.png" alt="image-20230324021927789"></p>
 <h4 id="升降压斩波电路-Buck-Boost"><a href="#升降压斩波电路-Buck-Boost" class="headerlink" title="升降压斩波电路(Buck-Boost)"></a>升降压斩波电路(Buck-Boost)</h4><p>Buck与Boost的组合，既可以升压，也可以降压，但要注意输出电容的下端为正，基本的Buck，Boost的输出电容都是上端为正</p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316193557967.png" alt="image-20230316193557967"></p>
 <h3 id="同步整流与异步整流"><a href="#同步整流与异步整流" class="headerlink" title="同步整流与异步整流"></a>同步整流与异步整流</h3><p>当功率管断开时，需要用不同的续流元器件进行续流，根据所用到的续流元器件种类的不同，可以分为同步整流与异步整流</p>
@@ -584,8 +619,8 @@
       <i class="fa fa-chevron-left"></i> 模电笔记
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" rel="next" title="通信总线">
-      通信总线 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF%20-%20%E5%89%AF%E6%9C%AC/" rel="next" title="毕业设计">
+      毕业设计 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -645,7 +680,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%B6%E9%97%B8%E7%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">晶闸管</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%A8%B3%E5%8E%8B%E5%99%A8LDO"><span class="nav-number">2.</span> <span class="nav-text">线性稳压器LDO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">整流电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%9B%B8%E5%8D%8A%E6%B3%A2%E5%8F%AF%E6%8E%A7%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">单相半波可控整流电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF"><span class="nav-number">4.</span> <span class="nav-text">斩波电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88DC-DC%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">直流斩波电路（DC-DC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88Buck%E7%94%B5%E8%B7%AF%EF%BC%89"><span class="nav-number">4.1.1.</span> <span class="nav-text">降压斩波电路（Buck电路）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E5%9E%8BBUCK%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%88%E5%8D%95%E7%AB%AF%E6%AD%A3%E6%BF%80%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%89"><span class="nav-number">4.1.2.</span> <span class="nav-text">隔离型BUCK变换器（单端正激变换器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E5%8E%8B%E6%96%A9%E6%B3%A2%E5%9E%8BDC-DC%E7%94%B5%E8%B7%AF%EF%BC%88BOOST%EF%BC%89"><span class="nav-number">4.1.3.</span> <span class="nav-text">升压斩波型DC-DC电路（BOOST）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF-Buck-Boost"><span class="nav-number">4.1.4.</span> <span class="nav-text">升降压斩波电路(Buck-Boost)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%95%B4%E6%B5%81%E4%B8%8E%E5%BC%82%E6%AD%A5%E6%95%B4%E6%B5%81"><span class="nav-number">4.2.</span> <span class="nav-text">同步整流与异步整流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWM%E6%8E%A7%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">PWM控制的基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E7%AB%AF%E5%8F%8D%E6%BF%80%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">单端反激式开关电源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E6%A1%A5%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">半桥式开关电源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%A1%A5%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">8.</span> <span class="nav-text">全桥式开关电源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E6%8C%BD%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">9.</span> <span class="nav-text">推挽式开关电源</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%B6%E9%97%B8%E7%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">晶闸管</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E7%A8%B3%E5%8E%8B%E5%99%A8LDO"><span class="nav-number">2.</span> <span class="nav-text">线性稳压器LDO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">整流电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%9B%B8%E5%8D%8A%E6%B3%A2%E5%8F%AF%E6%8E%A7%E6%95%B4%E6%B5%81%E7%94%B5%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">单相半波可控整流电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF"><span class="nav-number">4.</span> <span class="nav-text">斩波电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%B5%81%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88DC-DC%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">直流斩波电路（DC-DC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF%EF%BC%88Buck%E7%94%B5%E8%B7%AF%EF%BC%89"><span class="nav-number">4.1.1.</span> <span class="nav-text">降压斩波电路（Buck电路）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E5%9E%8BBUCK%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%88%E5%8D%95%E7%AB%AF%E6%AD%A3%E6%BF%80%E5%8F%98%E6%8D%A2%E5%99%A8%EF%BC%89"><span class="nav-number">4.1.2.</span> <span class="nav-text">隔离型BUCK变换器（单端正激变换器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E5%8E%8B%E6%96%A9%E6%B3%A2%E5%9E%8BDC-DC%E7%94%B5%E8%B7%AF%EF%BC%88BOOST%EF%BC%89"><span class="nav-number">4.1.3.</span> <span class="nav-text">升压斩波型DC-DC电路（BOOST）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%BB%A4%E6%B3%A2%E7%94%B5%E5%AE%B9%E5%AE%B9%E5%80%BC%E8%AE%A1%E7%AE%97"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">输入输出滤波电容容值计算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%87%E9%99%8D%E5%8E%8B%E6%96%A9%E6%B3%A2%E7%94%B5%E8%B7%AF-Buck-Boost"><span class="nav-number">4.1.4.</span> <span class="nav-text">升降压斩波电路(Buck-Boost)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%95%B4%E6%B5%81%E4%B8%8E%E5%BC%82%E6%AD%A5%E6%95%B4%E6%B5%81"><span class="nav-number">4.2.</span> <span class="nav-text">同步整流与异步整流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWM%E6%8E%A7%E5%88%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">PWM控制的基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E7%AB%AF%E5%8F%8D%E6%BF%80%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">6.</span> <span class="nav-text">单端反激式开关电源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E6%A1%A5%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">半桥式开关电源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%A1%A5%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">8.</span> <span class="nav-text">全桥式开关电源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E6%8C%BD%E5%BC%8F%E5%BC%80%E5%85%B3%E7%94%B5%E6%BA%90"><span class="nav-number">9.</span> <span class="nav-text">推挽式开关电源</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -661,20 +696,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -700,6 +735,9 @@
         <li class="links-of-blogroll-item">
           <a href="https://space.bilibili.com/31880831/?spm_id_from=333.999.0.0" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;31880831&#x2F;?spm_id_from&#x3D;333.999.0.0" rel="noopener" target="_blank">高质量网课</a>
         </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://chenjunan.top/detail/Detail?id=7%20" title="https:&#x2F;&#x2F;chenjunan.top&#x2F;detail&#x2F;Detail?id&#x3D;7%20" rel="noopener" target="_blank">软件白嫖</a>
+        </li>
     </ul>
   </div>
 
@@ -716,7 +754,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="250" height="250" id="resCanvas" style="width=100%">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot-es-rabbitMQ/" rel="tag">Springboot,es,rabbitMQ</a><span class="tag-list-count">1</span></li></ul>
         </canvas>
     </div>
 </div>
@@ -751,7 +789,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共55.2k字</span>
+  <span class="post-count">博客全站共59.7k字</span>
 </div>
         
 

@@ -40,9 +40,11 @@
 <meta property="og:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDQwNzIzOA==,size_16,color_FFFFFF,t_70#pic_center-1678972116083-12.png">
 <meta property="og:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230218153844988.png">
 <meta property="og:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230227182851518.png">
+<meta property="og:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/20200729104143_3906.jpg">
 <meta property="og:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230227183136034.png">
+<meta property="og:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230317182538742.png">
 <meta property="article:published_time" content="2023-03-02T14:07:08.000Z">
-<meta property="article:modified_time" content="2023-03-17T10:09:18.668Z">
+<meta property="article:modified_time" content="2023-03-23T18:37:32.365Z">
 <meta property="article:author" content="Kim-Donghyun">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230316211019684.png">
@@ -241,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:09:18" itemprop="dateModified" datetime="2023-03-17T18:09:18+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-24 02:37:32" itemprop="dateModified" datetime="2023-03-24T02:37:32+08:00">2023-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,6 +327,47 @@
 <span id="more"></span>
 
 <h3 id="电容滤波"><a href="#电容滤波" class="headerlink" title="电容滤波"></a>电容滤波</h3><p>由于大电容的制作工艺是多个导线缠绕制成，所以大电容工作时会表现出电感特性，即在高频信号下表现不好，而小电容因其体积小，所以其电感特性不明显，在高频信号下表现良好，所以可以采用大电容并联小电容的接法去过滤电路中的高频噪音和低频噪音</p>
+<h3 id="电容选型须知"><a href="#电容选型须知" class="headerlink" title="电容选型须知"></a>电容选型须知</h3><p>相关参数：额定电压，工作频率范围，等效串联电感，等效串联电阻</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>铝电解电容</th>
+<th>钽电容</th>
+<th>陶瓷电容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>电容量</td>
+<td>0.1uF - 3F</td>
+<td>0.1uF - 1000uF</td>
+<td>0.5pF - 100uF</td>
+</tr>
+<tr>
+<td>耐压</td>
+<td>5V - 500V</td>
+<td>2V - 50V</td>
+<td>2V - 1000V</td>
+</tr>
+<tr>
+<td>ESR（等效串联电阻）</td>
+<td>几十毫欧至2.5欧姆（100KHZ&#x2F;25C°）</td>
+<td>几十毫欧至几百毫姆（100KHZ&#x2F;25C°）</td>
+<td>几毫欧至几百毫姆（100KHZ&#x2F;25C°）</td>
+</tr>
+<tr>
+<td>ESL(等效串联电感)</td>
+<td>不超过100nH</td>
+<td>2nH左右</td>
+<td>1 -2nH</td>
+</tr>
+<tr>
+<td>工作频率范围</td>
+<td>低频滤波，小于600KHZ</td>
+<td>中低频滤波，几百KHZ至几MHZ</td>
+<td>高频滤波，几MHZ至几GHZ</td>
+</tr>
+</tbody></table>
 <h2 id="电感"><a href="#电感" class="headerlink" title="电感"></a>电感</h2><p><strong>电感的电流不能突变</strong></p>
 <h3 id="电感与磁珠的区别"><a href="#电感与磁珠的区别" class="headerlink" title="电感与磁珠的区别"></a>电感与磁珠的区别</h3><ol>
 <li>电感是储能元件，磁珠是能量转换器件</li>
@@ -376,10 +419,15 @@
 <h3 id="续流二极管"><a href="#续流二极管" class="headerlink" title="续流二极管"></a>续流二极管</h3><p>消除回路中大量的反向电动势，保护元器件</p>
 <p><img src="/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230218153844988.png" alt="image-20230218153844988"></p>
 <p>在图3 中KR 在VT 导通时，上面电压为上正下负，电流方向由上向下。在VT 关断时会，KR中电流突然中断，会产生感应电势，其方向是力图保持电流不变，即总想保持KR 电流方向为由下至下。这个感应电势与电源电压迭加后加在ＶＴ两端，容易使ＶＴ出穿。为此加上ＶＤ，将ＫＲ产生的感应电势短路掉，电注是你所说的“顺时针方向在二极管和继电器所的小回路里面流动”，从而保护ＶＴ</p>
-<h3 id="瞬态电压抑制器"><a href="#瞬态电压抑制器" class="headerlink" title="瞬态电压抑制器"></a>瞬态电压抑制器</h3><p>利用二极管的反向击穿原理，与器件并联接入，当电路中电压过大，大于TVS的反向击穿电压时，TVS会从高阻态变为低电阻状态，同时将器件两端电压钳制在较低水平，保护电路，当电压恢复正常后，TVS管又变为高阻态，电路正常工作</p>
+<h3 id="瞬态电压抑制器"><a href="#瞬态电压抑制器" class="headerlink" title="瞬态电压抑制器"></a>瞬态电压抑制器</h3><p>利用二极管的反向击穿原理，与器件并联接入，当电路中电压过大，大于TVS的反向击穿电压时，TVS会从高阻态变为低电阻状态，同时将器件两端电压钳制在较低水平，保护电路，当电压恢复正常后，TVS管又变为高阻态，电路正常工作、</p>
+<h3 id="LED灯"><a href="#LED灯" class="headerlink" title="LED灯"></a>LED灯</h3><p>一般的频率为50-60HZ</p>
 <h2 id="三极管"><a href="#三极管" class="headerlink" title="三极管"></a>三极管</h2><p>不同工作状态下所利用的场景不同</p>
 <p><strong>一般来说，放大区用于放大电路中</strong></p>
 <p><strong>而在数字电路中的三极管一般工作在饱和区和截止区，利用其开关特性</strong></p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>对与NPN与PNP的三极管，按照成本来说，一般NPN使用较高</p>
+<p>但考虑到实际电路，当作为开关使用时：</p>
+<p>NPN三极管它基集所需要的驱动电压较大，并且相对应的输出电流比较小，所以控制一盏灯的开关时，PNP三极管作为开关，会使灯更亮</p>
+<p>但是NPN结构下的低噪，高频特性比PNP结构好</p>
 <h3 id="MOS管"><a href="#MOS管" class="headerlink" title="MOS管"></a>MOS管</h3><ul>
 <li>结型：利用PN结特性，使用时要让栅源电压小于0，栅源电压越小，产生沟道越窄，同样会产生夹断现象，<strong>VGS不能大与0，会使GS的PN结导通</strong></li>
 </ul>
@@ -387,8 +435,29 @@
 <ul>
 <li>绝缘栅型：栅极下加入一个SIO2绝缘层，利用电场力吸引电子产生沟道，使漏源导通</li>
 </ul>
+<h4 id="工作详解"><a href="#工作详解" class="headerlink" title="工作详解"></a>工作详解</h4><p>金属-氧化物-半导体场效应晶体管，简称场效晶体管。内部结构（以N-MOSFET为例）如下图所示。</p>
+<p><img src="/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/20200729104143_3906.jpg" alt="MOS管,三极管,IGBT"></p>
+<p>MOSFET内部结构及符号</p>
+<p>在P型半导体衬底上制作两个N+区，一个称为源区，一个称为漏区。漏、源之间是横向距离沟道区。在沟道区的表面上，有一层由热氧化生成的氧化层作为介质，称为绝缘栅。在源区、漏区和绝缘栅上蒸发一层铝作为引出电极，就是源极(S)、漏极(D)和栅极(G)。</p>
+<p>MOSFET管是压控器件，它的导通关断受到栅极电压的控制。我们从图上观察，发现N-MOSFET管的源极S和漏极D之间存在两个背靠背的pn结，当栅极-源极电压VGS不加电压时，不论漏极-源极电压VDS之间加多大或什么极性的电压，总有一个pn结处于反偏状态，漏、源极间没有导电沟道，器件无法导通。</p>
+<p>但如果VGS正向足够大，此时栅极G和衬底p之间的绝缘层中会产生一个电场，方向从栅极指向衬底，电子在该电场的作用下聚集在栅氧下表面，形成一个N型薄层(一般为几个nm)，连通左右两个N+区，形成导通沟道，如图中黄色区域所示。当VDS＞0V时，N-MOSFET管导通，器件工作。</p>
 <h4 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h4><p>因为MOS管栅极无电流，输入端无伏安特性曲线，所以没有输入特性，故用特殊的转移特性表示其特性曲线</p>
 <p><img src="/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230227183136034.png" alt="image-20230227183136034"></p>
+<h4 id="MOS管工作时发热的主要原理"><a href="#MOS管工作时发热的主要原理" class="headerlink" title="MOS管工作时发热的主要原理"></a>MOS管工作时发热的主要原理</h4><p>主要原因</p>
+<ul>
+<li>驱动频率过高</li>
+<li>基级驱动电压不足</li>
+<li>通过漏极和源极的电流较大</li>
+</ul>
+<p>因为驱动电压不足，所以会导致MOS管在导通时他的尖峰电压与尖峰电流过大，这时主要引起MOS管发热的原因，所以改进的方法</p>
+<ul>
+<li>降低电路的驱动频率</li>
+<li>提高源级的驱动电压</li>
+<li>选择内阻较低的MOS管</li>
+</ul>
+<p>使在开关过程中，MOS管两端压降变小，能量损耗变少</p>
+<h4 id="PMOS与NMOS相比的优势"><a href="#PMOS与NMOS相比的优势" class="headerlink" title="PMOS与NMOS相比的优势"></a>PMOS与NMOS相比的优势</h4><p><strong>NMOS导通电阻低且价格便宜，并且流过电流较大</strong></p>
+<p>并且PMOS管驱动需要使用额外的三极管去驱动</p>
 <h3 id="三极管与MOS的对比"><a href="#三极管与MOS的对比" class="headerlink" title="三极管与MOS的对比"></a>三极管与MOS的对比</h3><p>1）．场效应管的源极S、栅极G、漏极D分别对应于三极管的发射极e、基极b、集电极c，它们的作用相似，图1-6-A所示是N沟道MOS管和NPN型晶体三极管引脚，图1-6-B所示是P沟道MOS管和PNP型晶体三极管引脚对应图。</p>
 <p>2)．场效应管是电压控制电流器件，由VGS控制ID，普通的晶体三极管是电流控制电流器件，由IB控制IC。MOS管道放大系数是（跨导gm）当栅极电压改变一伏时能引起漏极电流变化多少安培。晶体三极管是电流放大系数（贝塔β）当基极电流改变一毫安时能引起集电极电流变化多少。</p>
 <p>3)．场效应管栅极和其它电极是绝缘的，不产生电流；而三极管工作时基极电流IB决定集电极电流IC。因此场效应管的输入电阻比三极管的输入电阻高的多。</p>
@@ -397,6 +466,7 @@
 <p>6)．场效应管的噪声系数很小，在低噪声放大电路的输入级及要求信噪比较高的电路中要选用场效应管。</p>
 <p>7)．场效应管和普通晶体三极管均可组成各种放大电路和开关电路，但是场效应管制造工艺简单，并且又具有普通晶体三极管不能比拟的优秀特性，在各种电路及应用中正逐步的取代普通晶体三极管，目前的大规模和超大规模集成电路中，已经广泛的采用场效应管。</p>
 <h3 id="IGBT"><a href="#IGBT" class="headerlink" title="IGBT"></a>IGBT</h3><p>由一个三极管与MOS管组合而成，使其有MOS管高输入阻抗的优点，同时还有三极管双载流的优点。实现驱动功率小，饱和压降低的好处</p>
+<p><img src="/2023/03/02/%E6%A8%A1%E6%8B%9F%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/image-20230317182538742.png" alt="image-20230317182538742"></p>
 <h3 id="作为开关使用时，MOS相比于三极管的好处"><a href="#作为开关使用时，MOS相比于三极管的好处" class="headerlink" title="作为开关使用时，MOS相比于三极管的好处"></a>作为开关使用时，MOS相比于三极管的好处</h3><ul>
 <li>开关特性好:由于MOS管只靠多子导电，所以不存在少子储电特性，因此关断很迅速</li>
 <li>输入阻抗高：由于MOS管栅极与衬底中有绝缘层隔开，可以看作为电容，所有有很大的输入阻抗</li>
@@ -414,11 +484,29 @@
 <li>测量无源晶振频率输入脚与输出脚两端电压差，一般为芯片电压Vcc的2分之1</li>
 <li>直接用示波器测量，占空比为百分之50，平均电压为1&#x2F;2 Vcc</li>
 </ul>
+<h3 id="石英晶体的品质因数Q"><a href="#石英晶体的品质因数Q" class="headerlink" title="石英晶体的品质因数Q"></a>石英晶体的品质因数Q</h3><p>石英晶体的电压谐振现象可以用等效电路来模拟，</p>
+<p>具体可以表现为</p>
+<ul>
+<li>静态电容C0</li>
+<li>动态电容C1</li>
+<li>动态电感L1</li>
+<li>动态电阻R1</li>
+</ul>
+<p>具体的品质因数计算公式为：</p>
+<p>Q&#x3D;2ΠfL1&#x2F;R1</p>
+<p>通过此式可以看出，晶振的品质因数与动态电阻R1成反比，即损失的能量越低，晶振的频率越稳定，对应的Q值也就越高</p>
 <h3 id="为什么要外加电容"><a href="#为什么要外加电容" class="headerlink" title="为什么要外加电容"></a>为什么要外加电容</h3><p>使晶体两端电容近似相当于负载电容，满足谐振条件使其起振</p>
 <p>晶体旁的两个电容要接地，为三点式分压电容，接地点就是分压点</p>
 <h3 id="为什么外加电阻"><a href="#为什么外加电阻" class="headerlink" title="为什么外加电阻"></a>为什么外加电阻</h3><p>晶体的内部芯片电路，可以看作是以一个增益很大的放大器，接入电阻相当于引入反馈，使晶体更稳定的工作</p>
 <h3 id="晶振为什么不能放置在PCB边缘"><a href="#晶振为什么不能放置在PCB边缘" class="headerlink" title="晶振为什么不能放置在PCB边缘"></a>晶振为什么不能放置在PCB边缘</h3><p>会产生EMC辐射干扰电路</p>
 <h3 id="32-768KHZ晶振作用"><a href="#32-768KHZ晶振作用" class="headerlink" title="32.768KHZ晶振作用"></a>32.768KHZ晶振作用</h3><p>32768为2的15次方，作为单片机中的时钟信号，将其15等分即能获得频率为1HZ的信号</p>
+<h3 id="晶振两端电容相关计算"><a href="#晶振两端电容相关计算" class="headerlink" title="晶振两端电容相关计算"></a>晶振两端电容相关计算</h3><p>晶振旁边的两个电容，与晶振总体看来可以看作，两个电容与晶振并联，两个电容之间互相串联</p>
+<p>具体电容大小的计算公式为：</p>
+<p><strong><code>CL = C1\*C2 / (C1+C2) + CS</code></strong></p>
+<p>其中CS为电路板的寄生电容，一般为3-5pF，C1&#x3D;C2，</p>
+<p>上述式即可化简为：**<code>CL = C1 / 2 + CS</code>**</p>
+<p><strong>晶振的选择方面，我们应该依照以下相关参数</strong>：</p>
+<p><strong>频率稳定性、输出、相位噪声和抖动、电源和负载的影响、封装形式以及工作环境</strong></p>
 <h2 id="放大电路"><a href="#放大电路" class="headerlink" title="放大电路"></a>放大电路</h2><p>共射级放大电路：</p>
 <p>为什么输出电阻很大时，输出相当于电流源，输出电阻很小时，输出相当于电压源</p>
 <p>原因：<strong>根据戴维南等效定律，从负载RL向电路看，可以等效为一个电压源和一个电阻串联，所以可得到相应的Uo，Io，根据公式可算出，当R0很大时，负载电阻的变化对电流几乎没影响，但对电压影响很大，R0很小时，负载电阻变化对电压几乎没影响，但对电流影响很大</strong></p>
@@ -508,8 +596,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/24/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF/" rel="prev" title="数电笔记">
-      <i class="fa fa-chevron-left"></i> 数电笔记
+    <a href="/2023/02/24/C%E8%AF%AD%E8%A8%80/" rel="prev" title="C语言程序设计">
+      <i class="fa fa-chevron-left"></i> C语言程序设计
     </a></div>
       <div class="post-nav-item">
     <a href="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/" rel="next" title="电力电子技术笔记">
@@ -573,7 +661,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E9%98%BB"><span class="nav-number">1.</span> <span class="nav-text">电阻</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB%E4%B8%8E%E4%B8%8B%E6%8B%89%E7%94%B5%E9%98%BB"><span class="nav-number">1.1.</span> <span class="nav-text">上拉电阻与下拉电阻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E9%98%BB%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">电阻的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">计算方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">电容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E9%99%8D%E5%8E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">电容降压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E6%BB%A4%E6%B3%A2"><span class="nav-number">2.2.</span> <span class="nav-text">电容滤波</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%84%9F"><span class="nav-number">3.</span> <span class="nav-text">电感</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%84%9F%E4%B8%8E%E7%A3%81%E7%8F%A0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.1.</span> <span class="nav-text">电感与磁珠的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">二极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1%E7%9A%84%E5%8F%8D%E5%90%91%E6%81%A2%E5%A4%8D%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">二极管的反向恢复过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%82%96%E7%89%B9%E5%9F%BA%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">4.2.</span> <span class="nav-text">肖特基二极管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E4%BA%8C%E6%9E%81%E7%AE%A1%E4%B8%B2%E8%81%94%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">4.3.</span> <span class="nav-text">两个二极管串联的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E6%B5%81%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">4.4.</span> <span class="nav-text">续流二极管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9E%AC%E6%80%81%E7%94%B5%E5%8E%8B%E6%8A%91%E5%88%B6%E5%99%A8"><span class="nav-number">4.5.</span> <span class="nav-text">瞬态电压抑制器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">三极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E7%AE%A1"><span class="nav-number">5.1.</span> <span class="nav-text">MOS管</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">5.1.1.</span> <span class="nav-text">主要特性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1%E4%B8%8EMOS%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">5.2.</span> <span class="nav-text">三极管与MOS的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IGBT"><span class="nav-number">5.3.</span> <span class="nav-text">IGBT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E5%BC%80%E5%85%B3%E4%BD%BF%E7%94%A8%E6%97%B6%EF%BC%8CMOS%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%89%E6%9E%81%E7%AE%A1%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">5.4.</span> <span class="nav-text">作为开关使用时，MOS相比于三极管的好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%B6%E6%8C%AF"><span class="nav-number">6.</span> <span class="nav-text">晶振</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%A4%96%E5%8A%A0%E7%94%B5%E5%AE%B9"><span class="nav-number">6.1.</span> <span class="nav-text">为什么要外加电容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%96%E5%8A%A0%E7%94%B5%E9%98%BB"><span class="nav-number">6.2.</span> <span class="nav-text">为什么外加电阻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%B6%E6%8C%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E6%94%BE%E7%BD%AE%E5%9C%A8PCB%E8%BE%B9%E7%BC%98"><span class="nav-number">6.3.</span> <span class="nav-text">晶振为什么不能放置在PCB边缘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-768KHZ%E6%99%B6%E6%8C%AF%E4%BD%9C%E7%94%A8"><span class="nav-number">6.4.</span> <span class="nav-text">32.768KHZ晶振作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="nav-number">7.</span> <span class="nav-text">放大电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%AE%A1"><span class="nav-number">7.1.</span> <span class="nav-text">复合管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="nav-number">7.2.</span> <span class="nav-text">多级放大电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%B3%E5%8E%8B%E5%99%A8"><span class="nav-number">8.</span> <span class="nav-text">稳压器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E5%9E%8B%E7%A8%B3%E5%8E%8B%E5%99%A8"><span class="nav-number">8.1.</span> <span class="nav-text">串联型稳压器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%AB%AF%E7%A8%B3%E5%8E%8B%E5%99%A8"><span class="nav-number">8.2.</span> <span class="nav-text">三端稳压器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">运算放大器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E7%9B%B8%E6%AF%94%E4%BE%8B"><span class="nav-number">9.1.</span> <span class="nav-text">同相比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E7%9B%B8%E6%AF%94%E4%BE%8B"><span class="nav-number">9.2.</span> <span class="nav-text">返相比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%AE%E5%8A%A8%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">9.3.</span> <span class="nav-text">差动放大器</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E9%98%BB"><span class="nav-number">1.</span> <span class="nav-text">电阻</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB%E4%B8%8E%E4%B8%8B%E6%8B%89%E7%94%B5%E9%98%BB"><span class="nav-number">1.1.</span> <span class="nav-text">上拉电阻与下拉电阻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E9%98%BB%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">电阻的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">计算方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">电容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E9%99%8D%E5%8E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">电容降压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E6%BB%A4%E6%B3%A2"><span class="nav-number">2.2.</span> <span class="nav-text">电容滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9%E9%80%89%E5%9E%8B%E9%A1%BB%E7%9F%A5"><span class="nav-number">2.3.</span> <span class="nav-text">电容选型须知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%84%9F"><span class="nav-number">3.</span> <span class="nav-text">电感</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E6%84%9F%E4%B8%8E%E7%A3%81%E7%8F%A0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.1.</span> <span class="nav-text">电感与磁珠的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">二极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1%E7%9A%84%E5%8F%8D%E5%90%91%E6%81%A2%E5%A4%8D%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">二极管的反向恢复过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%82%96%E7%89%B9%E5%9F%BA%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">4.2.</span> <span class="nav-text">肖特基二极管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E4%BA%8C%E6%9E%81%E7%AE%A1%E4%B8%B2%E8%81%94%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">4.3.</span> <span class="nav-text">两个二极管串联的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E6%B5%81%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">4.4.</span> <span class="nav-text">续流二极管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9E%AC%E6%80%81%E7%94%B5%E5%8E%8B%E6%8A%91%E5%88%B6%E5%99%A8"><span class="nav-number">4.5.</span> <span class="nav-text">瞬态电压抑制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LED%E7%81%AF"><span class="nav-number">4.6.</span> <span class="nav-text">LED灯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">三极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">5.1.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E7%AE%A1"><span class="nav-number">5.2.</span> <span class="nav-text">MOS管</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E8%AF%A6%E8%A7%A3"><span class="nav-number">5.2.1.</span> <span class="nav-text">工作详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">5.2.2.</span> <span class="nav-text">主要特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MOS%E7%AE%A1%E5%B7%A5%E4%BD%9C%E6%97%B6%E5%8F%91%E7%83%AD%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8E%9F%E7%90%86"><span class="nav-number">5.2.3.</span> <span class="nav-text">MOS管工作时发热的主要原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PMOS%E4%B8%8ENMOS%E7%9B%B8%E6%AF%94%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">5.2.4.</span> <span class="nav-text">PMOS与NMOS相比的优势</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1%E4%B8%8EMOS%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">5.3.</span> <span class="nav-text">三极管与MOS的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IGBT"><span class="nav-number">5.4.</span> <span class="nav-text">IGBT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E5%BC%80%E5%85%B3%E4%BD%BF%E7%94%A8%E6%97%B6%EF%BC%8CMOS%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%89%E6%9E%81%E7%AE%A1%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">5.5.</span> <span class="nav-text">作为开关使用时，MOS相比于三极管的好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%B6%E6%8C%AF"><span class="nav-number">6.</span> <span class="nav-text">晶振</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%B3%E8%8B%B1%E6%99%B6%E4%BD%93%E7%9A%84%E5%93%81%E8%B4%A8%E5%9B%A0%E6%95%B0Q"><span class="nav-number">6.1.</span> <span class="nav-text">石英晶体的品质因数Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%A4%96%E5%8A%A0%E7%94%B5%E5%AE%B9"><span class="nav-number">6.2.</span> <span class="nav-text">为什么要外加电容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%96%E5%8A%A0%E7%94%B5%E9%98%BB"><span class="nav-number">6.3.</span> <span class="nav-text">为什么外加电阻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%B6%E6%8C%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E6%94%BE%E7%BD%AE%E5%9C%A8PCB%E8%BE%B9%E7%BC%98"><span class="nav-number">6.4.</span> <span class="nav-text">晶振为什么不能放置在PCB边缘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-768KHZ%E6%99%B6%E6%8C%AF%E4%BD%9C%E7%94%A8"><span class="nav-number">6.5.</span> <span class="nav-text">32.768KHZ晶振作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%B6%E6%8C%AF%E4%B8%A4%E7%AB%AF%E7%94%B5%E5%AE%B9%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97"><span class="nav-number">6.6.</span> <span class="nav-text">晶振两端电容相关计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="nav-number">7.</span> <span class="nav-text">放大电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%AE%A1"><span class="nav-number">7.1.</span> <span class="nav-text">复合管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E6%94%BE%E5%A4%A7%E7%94%B5%E8%B7%AF"><span class="nav-number">7.2.</span> <span class="nav-text">多级放大电路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%B3%E5%8E%8B%E5%99%A8"><span class="nav-number">8.</span> <span class="nav-text">稳压器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E8%81%94%E5%9E%8B%E7%A8%B3%E5%8E%8B%E5%99%A8"><span class="nav-number">8.1.</span> <span class="nav-text">串联型稳压器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%AB%AF%E7%A8%B3%E5%8E%8B%E5%99%A8"><span class="nav-number">8.2.</span> <span class="nav-text">三端稳压器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">运算放大器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E7%9B%B8%E6%AF%94%E4%BE%8B"><span class="nav-number">9.1.</span> <span class="nav-text">同相比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E7%9B%B8%E6%AF%94%E4%BE%8B"><span class="nav-number">9.2.</span> <span class="nav-text">返相比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%AE%E5%8A%A8%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">9.3.</span> <span class="nav-text">差动放大器</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -589,20 +677,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -628,6 +716,9 @@
         <li class="links-of-blogroll-item">
           <a href="https://space.bilibili.com/31880831/?spm_id_from=333.999.0.0" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;31880831&#x2F;?spm_id_from&#x3D;333.999.0.0" rel="noopener" target="_blank">高质量网课</a>
         </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://chenjunan.top/detail/Detail?id=7%20" title="https:&#x2F;&#x2F;chenjunan.top&#x2F;detail&#x2F;Detail?id&#x3D;7%20" rel="noopener" target="_blank">软件白嫖</a>
+        </li>
     </ul>
   </div>
 
@@ -644,7 +735,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="250" height="250" id="resCanvas" style="width=100%">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot-es-rabbitMQ/" rel="tag">Springboot,es,rabbitMQ</a><span class="tag-list-count">1</span></li></ul>
         </canvas>
     </div>
 </div>
@@ -679,7 +770,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共55.2k字</span>
+  <span class="post-count">博客全站共59.7k字</span>
 </div>
         
 

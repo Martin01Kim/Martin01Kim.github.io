@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:09:38" itemprop="dateModified" datetime="2023-03-17T18:09:38+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-25 16:13:03" itemprop="dateModified" datetime="2023-03-25T16:13:03+08:00">2023-03-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,6 +306,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF%20-%20%E5%89%AF%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kim-Donghyun">
+      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小金的学习日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/05/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF%20-%20%E5%89%AF%E6%9C%AC/" class="post-title-link" itemprop="url">毕业设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-05 22:07:08" itemprop="dateCreated datePublished" datetime="2023-03-05T22:07:08+08:00">2023-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-21 23:37:37" itemprop="dateModified" datetime="2023-03-21T23:37:37+08:00">2023-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF/" itemprop="url" rel="index"><span itemprop="name">通信总线</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="子工程与父工程"><a href="#子工程与父工程" class="headerlink" title="子工程与父工程"></a>子工程与父工程</h2><p>区别：</p>
+<ul>
+<li>父工程不需要打包，只负责依赖管理</li>
+<li>子模块的聚合和继承</li>
+<li>添加通用依赖</li>
+</ul>
+<p>父工程的依赖管理，主要作用为，当子工程启用相关插件时，会优先使用父工程的依赖版本</p>
+
+      
+    </div>
+
+    
+    
+    
+     
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -337,7 +419,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:09:08" itemprop="dateModified" datetime="2023-03-17T18:09:08+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-24 12:37:30" itemprop="dateModified" datetime="2023-03-24T12:37:30+08:00">2023-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -383,6 +465,10 @@
 <li>成本低，DC-DC成本较高，因为有电阻，电容，电感等器件</li>
 </ul>
 <p>注意78XX，79XX是线性稳压器件，并不是低压差线性稳压器（LDO），其要求输出电压比输入电压高2-3伏</p>
+<p>线性稳压器使用时关于电容的选择：</p>
+<ul>
+<li>输入电容C1应该比输出电容C2大，好处是当输入为0时，由于C1的容量大于C2的容量，这样就避免了C2对稳压器进行反向充电，对稳压器有一定的保护作用</li>
+</ul>
 <h2 id="整流电路"><a href="#整流电路" class="headerlink" title="整流电路"></a>整流电路</h2><p>将交流电整成直流电</p>
 <ul>
 <li>按交流输入相数分为：单相电路和多相电路</li>
@@ -450,6 +536,12 @@
 <p>输出功率与输入功率相同，通过控制PWM占空比，即通过控制开关管V的关断，即可控制输出的平均电压</p>
 <p>工作流程：</p>
 <p>MOS管开启，电源电压通过电感流入负载，并将电能存储在电感，电容中，当MOS管关断时，存储在电感，电容中的电能释放，流出电压通过负载，续流二极管流回电感，因为电路中电压很小，所以发热功率U*I很小，这也是为什么开关电源效率高的原因</p>
+<p>BUCK电流中电容的作用：</p>
+<ul>
+<li>主要起到滤波的作用</li>
+<li>辅助电感给电阻提供能量</li>
+<li></li>
+</ul>
 <p><strong>减少输出电压脉动的方法</strong></p>
 <ul>
 <li><strong>提高开关频率</strong></li>
@@ -462,6 +554,17 @@
 </ul>
 <p>缺点：输出噪声较大</p>
 <p>优点：效率高</p>
+<p>BUCK型电源芯片一般包含如下引脚：</p>
+<ul>
+<li>电源输入引脚VIN</li>
+<li>GND</li>
+<li>EN</li>
+<li>SW：电感节点</li>
+<li>FB：基准电压，一般通过分压电阻调节输出电压</li>
+<li>BOOT：如果看到芯片中含有BOOT引脚，一般内部为N-MOS管，需要外接自举电容、</li>
+</ul>
+<p>自举电容原理：</p>
+<p>同步整流的BUCK芯片，两个管无法同时导通，上方的MOS管需要加一个自举电容放电，使上方的MOS管导通，一般使用与占空比较小的电路中</p>
 <p><strong>BUCK电路相关计算，伏秒法则</strong></p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316230030306.png" alt="image-20230316230030306"></p>
 <h4 id="隔离型BUCK变换器（单端正激变换器）"><a href="#隔离型BUCK变换器（单端正激变换器）" class="headerlink" title="隔离型BUCK变换器（单端正激变换器）"></a>隔离型BUCK变换器（单端正激变换器）</h4><p>在传统的BUCK变换器，中间加入了个隔离变压器</p>
@@ -474,7 +577,13 @@
 <p>绿色方框内为传统BUCK电路的开关，右侧为正常电路模型</p>
 <p><strong>单端表示变压器磁通仅在单方面变化</strong></p>
 <p><strong>正激表示电管开关管开启时将能量直接传送给负载</strong></p>
-<h4 id="升压斩波型DC-DC电路（BOOST）"><a href="#升压斩波型DC-DC电路（BOOST）" class="headerlink" title="升压斩波型DC-DC电路（BOOST）"></a>升压斩波型DC-DC电路（BOOST）</h4><p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316170011700.png" alt="image-20230316170011700"></p>
+<h4 id="升压斩波型DC-DC电路（BOOST）"><a href="#升压斩波型DC-DC电路（BOOST）" class="headerlink" title="升压斩波型DC-DC电路（BOOST）"></a>升压斩波型DC-DC电路（BOOST）</h4><p>三种工作方式：</p>
+<ul>
+<li>连续工作方式</li>
+<li>临界连续工作方式</li>
+<li>非连续导通方式</li>
+</ul>
+<p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316170011700.png" alt="image-20230316170011700"></p>
 <p>工作流程：</p>
 <ul>
 <li>开关导通时，输入电压流向电感，电感电流线性增加，电感储能增加，电源向电感转移电能，此时负载通过电容C供电</li>
@@ -488,12 +597,18 @@
 <li>电感中存储电能的泵升作用使输出电压升高</li>
 <li>开关导通时，电容维持负载两端电压</li>
 </ul>
+<p><strong>T导通时，电感电流不能突变，此时电感两端电压左正右负，T截止时，电感电流不能突变，此时电感两端电压右正左负，相当于两个电池串联，实现电压的升高</strong></p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175742649.png" alt="image-20230316175742649"></p>
 <p><strong>显然，要降低电压纹波，可以增加开关频率，电容量，来降低电压纹波</strong></p>
 <p><strong>电感临界连续电流：</strong></p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316175943922.png" alt="image-20230316175943922"></p>
 <p>缺点：效率不高</p>
 <p>优点：得到的电流较小</p>
+<h5 id="输入输出滤波电容容值计算"><a href="#输入输出滤波电容容值计算" class="headerlink" title="输入输出滤波电容容值计算"></a>输入输出滤波电容容值计算</h5><p>大体思路：先根据电容公式求纹波电压，带入一系列公式后，如占空比，功率欧姆定律，纹波率公式得到所需要纹波率，根据题中给出的纹波率范围，求出电容值</p>
+<p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230324021734672.png" alt="image-20230324021734672"></p>
+<p><strong>输入滤波电容容值计算：</strong></p>
+<p>在CCM模式下，假定电感的纹波电流全部被输入电容所吸收</p>
+<p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230324021927789.png" alt="image-20230324021927789"></p>
 <h4 id="升降压斩波电路-Buck-Boost"><a href="#升降压斩波电路-Buck-Boost" class="headerlink" title="升降压斩波电路(Buck-Boost)"></a>升降压斩波电路(Buck-Boost)</h4><p>Buck与Boost的组合，既可以升压，也可以降压，但要注意输出电容的下端为正，基本的Buck，Boost的输出电容都是上端为正</p>
 <p><img src="/2023/03/04/%E7%94%B5%E5%8A%9B%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF/image-20230316193557967.png" alt="image-20230316193557967"></p>
 <h3 id="同步整流与异步整流"><a href="#同步整流与异步整流" class="headerlink" title="同步整流与异步整流"></a>同步整流与异步整流</h3><p>当功率管断开时，需要用不同的续流元器件进行续流，根据所用到的续流元器件种类的不同，可以分为同步整流与异步整流</p>
@@ -639,7 +754,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:09:18" itemprop="dateModified" datetime="2023-03-17T18:09:18+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-24 02:37:32" itemprop="dateModified" datetime="2023-03-24T02:37:32+08:00">2023-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -728,6 +843,121 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+     
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/24/C%E8%AF%AD%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Kim-Donghyun">
+      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小金的学习日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/24/C%E8%AF%AD%E8%A8%80/" class="post-title-link" itemprop="url">C语言程序设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-24 22:07:08" itemprop="dateCreated datePublished" datetime="2023-02-24T22:07:08+08:00">2023-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-24 09:10:49" itemprop="dateModified" datetime="2023-03-24T09:10:49+08:00">2023-03-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\tHello,world\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\rHello,World\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\\Hello world\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\&#x27;Hello world\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Hello, World! <span class="comment">// \n表示第一行输出后换行</span></span><br><span class="line">Hello, World!   Hello,world <span class="comment">// \t表示第二行输出后进行制表，再输出下一个hello world</span></span><br><span class="line">Hello,Worldd!     <span class="comment">// \r表示输出后，将\r后的字符串去替代前方的字符串，没替换部分则按原字符串为准</span></span><br><span class="line">Hello, World!\Hello world <span class="comment">//利用转义字符输出特殊符号</span></span><br><span class="line">Hello, World!<span class="string">&#x27;Hello world //利用转义字符输出特殊符号</span></span><br></pre></td></tr></table></figure>
+
+<p>不同转义字符所产生的效果不同，上述代码输出效果</p>
+<h2 id="常量的定义"><a href="#常量的定义" class="headerlink" title="常量的定义"></a>常量的定义</h2><h3 id="define预处理器"><a href="#define预处理器" class="headerlink" title="#define预处理器"></a>#define预处理器</h3><p>定义一个常量，定义时仅需要定义变量名，变量值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">double</span> area;</span><br><span class="line">    <span class="type">double</span> r = <span class="number">2</span>;</span><br><span class="line">    area = r * r * PI;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;面积为: %.2f&quot;</span>,area);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，define定义时，若在define定义时对变量设计相关计算，define只会进行单纯的值替换，并不会视为赋予小括号</p>
+<p><img src="/2023/02/24/C%E8%AF%AD%E8%A8%80/image-20230324080938141.png" alt="image-20230324080938141"></p>
+<p><strong>define在定义一个变量时，可以通过undef取消变量的某个定义，再重新定义该变量，改变其值</strong></p>
+<p><strong>#ifdef，由#if演变而来，意思为，如果定义了ifdef后面的值，就输出下方的语句，直到#endif处（预处理命令#）</strong></p>
+<p><img src="/2023/02/24/C%E8%AF%AD%E8%A8%80/image-20230324081620594.png" alt="image-20230324081620594"></p>
+<h3 id="const关键字"><a href="#const关键字" class="headerlink" title="const关键字"></a>const关键字</h3><p>定义时<strong>需要定义变量的数值类型，变量名，变量值，并且要有等号连接</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">double</span> PII = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">double</span> area;</span><br><span class="line">    <span class="type">double</span> r = <span class="number">2</span>;</span><br><span class="line">    area = r * r * PI;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;面积为: %.2f&quot;</span>,area);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要注意const不能对同一个变量重复定义</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;i的值为%d,i的地址为%p&quot;</span>,i,&amp;i);</span><br><span class="line"><span class="type">int</span> *ptr = &amp;i;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;i的地址为%p,i的值为%d&quot;</span>,ptr,*ptr);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>定义时代表ptr是一个int*类型指针，他指向一个int类型的变量</p>
+<p>ptr本身输出时，输出的是其指向变量地址</p>
+<p>*ptr表示地址所指向的变量的值</p>
+<p><strong>ptr本身也有地址</strong></p>
+<p><strong>&amp;为取地址运算</strong></p>
+<p>*<strong>为取该变量值所指向的变量的值</strong></p>
+<p>不同数据类型的地址不能相互赋值</p>
+<p><strong>如FLOAT类型数据的地址不能赋予给int*指针</strong></p>
+<h2 id="字符数组"><a href="#字符数组" class="headerlink" title="字符数组"></a>字符数组</h2><p>C语言中没有专用的字符串定义，而是用字符数组去定义一个字符串</p>
+<p>，字符数组的终止以’\0’为终止</p>
+<p><img src="/2023/02/24/C%E8%AF%AD%E8%A8%80/image-20230324084449095.png" alt="image-20230324084449095"></p>
+<p>所以输出该字符数组时，输出的为tom，所以当字符数组长度等于内部字符串长度时，输出可能会出现异常，因为没有’\0’终止符号</p>
+<p>三种定义方式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> a[<span class="number">20</span>] = &#123;<span class="string">&quot;tom&quot;</span>&#125;;</span><br><span class="line"><span class="type">char</span> b[<span class="number">20</span>] = &#123;<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;m&#x27;</span>&#125;;</span><br><span class="line"><span class="type">char</span> c[<span class="number">20</span>] = <span class="string">&quot;tom&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>其中，a，b，c相当于常量，所以定义时没有赋值，不能后面通过</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="string">&quot;tom&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>去给该字符数组赋值，因为空间在数组创建时已经确定，但是如果该数组为字符指针赋值，则可以通过这种方法去改变值</strong></p>
+<p><img src="/2023/02/24/C%E8%AF%AD%E8%A8%80/image-20230324085757111.png" alt="image-20230324085757111"></p>
+<p><strong>还可以用字符指针变量表示字符串</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* ptr = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,ptr);</span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>]=&#123;<span class="number">6</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">25</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span> ;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    <span class="type">int</span> tmp;</span><br><span class="line">    <span class="type">int</span> len = <span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span> (<span class="type">int</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = len; i &gt; <span class="number">0</span> ; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])&#123;</span><br><span class="line">                tmp = a[j];</span><br><span class="line">                a[j] = a[j+<span class="number">1</span>];</span><br><span class="line">                a[j+<span class="number">1</span>]= tmp;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> m = <span class="number">0</span>; m &lt; len; ++m) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>,a[m]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -870,7 +1100,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:09:00" itemprop="dateModified" datetime="2023-03-17T18:09:00+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-24 02:12:30" itemprop="dateModified" datetime="2023-03-24T02:12:30+08:00">2023-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1032,7 +1262,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:08:38" itemprop="dateModified" datetime="2023-03-17T18:08:38+08:00">2023-03-17</time>
+                <time title="修改时间：2023-03-24 01:15:06" itemprop="dateModified" datetime="2023-03-24T01:15:06+08:00">2023-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1055,7 +1285,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h1><h2 id="PCB模块化设计"><a href="#PCB模块化设计" class="headerlink" title="PCB模块化设计"></a>PCB模块化设计</h2><p><img src="/2023/01/14/PCB%20Layout/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226171410492.png" alt="image-20230226171410492"></p>
+          <h1 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h1><p>总体流程</p>
+<ol>
+<li><p>原理图封装库创建</p>
+</li>
+<li><p>原理图设计</p>
+</li>
+<li><p>PCB封装</p>
+</li>
+<li><p>PCB布线设计</p>
+</li>
+<li><p>布线优化</p>
+</li>
+<li><p>网络DRC检查，结构检查</p>
+</li>
+<li><p>制版</p>
+<p>阻焊的作用：防止绿油覆盖</p>
+</li>
+</ol>
+<p>PCB设计前，要先进行板框评估，将所有器件选中，按照矩形区排列，确定大概范围后在机械1层布板</p>
+<p><strong>如果被绿油覆盖，则无法焊接，因为绿油绝燃，阻焊不能与焊盘完全重叠，因为可能会有绿油飞溅，会导致焊接不牢固</strong></p>
+<h2 id="PCB模块化设计"><a href="#PCB模块化设计" class="headerlink" title="PCB模块化设计"></a>PCB模块化设计</h2><p><img src="/2023/01/14/PCB%20Layout/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20230226171410492.png" alt="image-20230226171410492"></p>
 <ul>
 <li>CPU等放到中间</li>
 <li>电源置于左侧</li>
@@ -1283,217 +1533,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/28/JavaWeb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kim-Donghyun">
-      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小金的学习日志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/28/JavaWeb/" class="post-title-link" itemprop="url">Mysql学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-28 22:07:08" itemprop="dateCreated datePublished" datetime="2022-09-28T22:07:08+08:00">2022-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:08:07" itemprop="dateModified" datetime="2023-03-17T18:08:07+08:00">2023-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Mysql基础"><a href="#Mysql基础" class="headerlink" title="Mysql基础"></a>Mysql基础</h1><ul>
-<li>连接层</li>
-<li>服务层</li>
-<li>引擎层</li>
-<li>存储层</li>
-</ul>
-<h2 id="DDL-x2F-DML-x2F-DQL：对数据库，表进行操作的语句"><a href="#DDL-x2F-DML-x2F-DQL：对数据库，表进行操作的语句" class="headerlink" title="DDL&#x2F;DML&#x2F;DQL：对数据库，表进行操作的语句"></a><strong>DDL&#x2F;DML&#x2F;DQL：对数据库，表进行操作的语句</strong></h2><p>Create database name;  创建一个名为name的数据库</p>
-<p>drop database name;     删除一个名为name的数据库</p>
-<p>use database name;        进入数据库</p>
-<hr>
-<p>show tables;   显示所有表</p>
-<p>desc table ; 查询表的结构</p>
-<p>create table tb_user(	id int comment ‘编号’	,	name varchar(20),	password varchar(20)	);  创建表，comment注释</p>
-<p>drop table name；删除表</p>
-<p>alter table  表名  rename to   新名字；     重命名</p>
-<p>alter table 表名   add 名称，数据类型       添加一列 	           </p>
-<p>alter table 表名   modify 名字，数据类型；修改一列的数据类型</p>
-<p>alter table 表名  rename to 新表名;     修改列名</p>
-<p>alter table 表名  change 名字，新名字，数据类型；  列名与数据类型一起修改</p>
-<p>alter table 表名  drop 列名；删除某列</p>
-<hr>
-<p>整数 int                               id int</p>
-<p>字符串 varchar（长度）  name varchar(20);  存储两个字符，就会开辟两个空间，最大开辟20个   节省空间，性能低</p>
-<p> char 定长字符串              name char(10)  若存储两个字符，仍然会被看作10个空间，没存储的空间用空格代替    存储性能高，浪费空间</p>
-<p>Date 日期                          birthday date</p>
-<p>TIME 时间                          lunch time</p>
-<p>DateTime 日期+时间       anniversary datetime</p>
-<p>浮点数double（总长度，小数点后保留几位） money double(	5	,	2	);  表示存储0-100.00的数</p>
-<hr>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/28/JavaWeb/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/27/JavaScript/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Kim-Donghyun">
-      <meta itemprop="description" content="希望现在的自己配得上所期望的生活">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小金的学习日志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/27/JavaScript/" class="post-title-link" itemprop="url">JS入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-27 22:07:08" itemprop="dateCreated datePublished" datetime="2022-09-27T22:07:08+08:00">2022-09-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-17 18:07:54" itemprop="dateModified" datetime="2023-03-17T18:07:54+08:00">2023-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="内部脚本"><a href="#内部脚本" class="headerlink" title="内部脚本"></a>内部脚本</h2><p>Script可以放置于任意地方，数量无限制，一般情况都会放到BODY标签底部，改善显示速度</p>
-<h2 id="外部脚本"><a href="#外部脚本" class="headerlink" title="外部脚本"></a>外部脚本</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../DemoJs/HelloJs.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> //一定要外闭合</span><br></pre></td></tr></table></figure>
-
-<p>SRC为JS文件URL路径，</p>
-<h2 id="书写语法"><a href="#书写语法" class="headerlink" title="书写语法"></a>书写语法</h2><p>每行结尾分号可有可无</p>
-<h3 id="输出语句："><a href="#输出语句：" class="headerlink" title="输出语句："></a>输出语句：</h3><p>alert：写入警告框</p>
-<p>write：写入HTML</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;123333&quot;</span>)  <span class="comment">//弹出警告</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">write</span>(<span class="string">&quot;HelloJs&quot;</span>) <span class="comment">//写入HTML页面</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello,JS2&quot;</span>) <span class="comment">//写入浏览器控制台</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>弱类型的值，可以存放任意数据的值，仅需要使用var声明一下</p>
-<p>var text &#x3D; 20；</p>
-<p>text&#x3D; “张三”</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test= <span class="number">20</span>;</span><br><span class="line"><span class="title function_">alert</span>(test);</span><br><span class="line"><span class="keyword">var</span> test = <span class="string">&quot;张三&quot;</span></span><br><span class="line"><span class="title function_">alert</span>(test)</span><br></pre></td></tr></table></figure>
-
-<p><strong>Var定义的变量相当于全局变量</strong></p>
-<p><strong>变量可以重复定义</strong></p>
-<p><strong>Let定义的变量相当于局部变量，且变量不可以重复定义</strong></p>
-<p><strong>console定义的变量相当于常量，定义后不能被改变</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/09/27/JavaScript/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1565,20 +1604,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1604,6 +1643,9 @@
         <li class="links-of-blogroll-item">
           <a href="https://space.bilibili.com/31880831/?spm_id_from=333.999.0.0" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;31880831&#x2F;?spm_id_from&#x3D;333.999.0.0" rel="noopener" target="_blank">高质量网课</a>
         </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://chenjunan.top/detail/Detail?id=7%20" title="https:&#x2F;&#x2F;chenjunan.top&#x2F;detail&#x2F;Detail?id&#x3D;7%20" rel="noopener" target="_blank">软件白嫖</a>
+        </li>
     </ul>
   </div>
 
@@ -1620,7 +1662,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="250" height="250" id="resCanvas" style="width=100%">
-            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Buck-Boost-Ldo/" rel="tag">Buck,Boost,Ldo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/I2C%E3%80%81SPI%E3%80%81UART%E3%80%81RS232%E3%80%81RS485%E3%80%81USB/" rel="tag">I2C、SPI、UART、RS232、RS485、USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC%EF%BC%8C%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%8CMybatis/" rel="tag">JDBC，状态码，Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot-es-rabbitMQ/" rel="tag">Springboot,es,rabbitMQ</a><span class="tag-list-count">1</span></li></ul>
         </canvas>
     </div>
 </div>
@@ -1655,7 +1697,7 @@
  
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共55.2k字</span>
+  <span class="post-count">博客全站共59.7k字</span>
 </div>
         
 
